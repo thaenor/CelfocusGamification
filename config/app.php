@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         "Laralib\L5scaffold\GeneratorsServiceProvider",
+		"Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider",
 
 		/*
 		 * Application Service Providers...
