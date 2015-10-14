@@ -387,21 +387,30 @@
                             <div class="col-md-6 col-sm-12 col-xs-12 ">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        Team's point score
+                                        Player leaderboard graph
                                     </div>
-
-
                                     <div class="panel-body">
-                                        <div id="morris-bar-chart">
-                                        </div>
-                                        <hr/>
-                                        <div id="morris-Teambar-chart">
-                                        </div>
+                                        <div id="morris-bar-chart"></div>
                                     </div>
                                 </div>
                             </div>
                             <!-- END Morris chart -->
                         </section>
+
+                        <!-- Morris chart -->
+                        <section>
+                            <div class="col-md-6 col-sm-12 col-xs-12 ">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Team leaderboard Graph
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="morris-Teambar-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- END Morris chart -->
 
                         <!-- Morris chart -->
                         <section>
