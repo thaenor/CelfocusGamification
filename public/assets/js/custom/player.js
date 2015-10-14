@@ -8,8 +8,8 @@ function renderPlayerLeaderBoard() {
     var playerArray = {}; //Dictionary like array, will contain [player name][player's points]... etc
     var playerCounter = 0;
 
-    $.each(_resolvedTicketsData, function(index, currentTicket) {
-        if(playerArray[currentTicket.user_id] === undefined){
+    $.each(_resolvedTicketsData, function (index, currentTicket) {
+        if (playerArray[currentTicket.user_id] === undefined) {
             playerArray[currentTicket.user_id] = 0;
             playerCounter++;
         }
@@ -20,10 +20,14 @@ function renderPlayerLeaderBoard() {
         playerArray[currentTicket.user_id] += fooCalculator(currentTicket);
         //console.log("player: "+currentTicket.user_id+" solved ticket with "+currentTicket.points+" priority"+currentTicket.priority+" type"+currentTicket.type+" sla "+currentTicket.sla_time+"%");
     });
-    playerArray ? (showPlayerLeaderBoard(playerArray), countPlayers(playerCounter)) : $.toaster({ priority : 'danger', title : 'Warning', message : 'no players exist'});
+    playerArray ? (showPlayerLeaderBoard(playerArray), countPlayers(playerCounter)) : $.toaster({
+        priority: 'danger',
+        title: 'Warning',
+        message: 'no players exist'
+    });
 }
 
-function renderMorrisBar_player(dataArray){
+function renderMorrisBar_player(dataArray) {
     $("#morris-bar-chart").empty();
     Morris.Bar({
         element: 'morris-bar-chart',
@@ -34,7 +38,7 @@ function renderMorrisBar_player(dataArray){
     });
 }
 
-function countPlayers(size){
+function countPlayers(size) {
     $('#playersInLeague').empty().append(size);
 }
 
@@ -42,10 +46,11 @@ function showPlayerLeaderBoard(array) {
     $('#playerLeaderboard').empty();
     var orderedPlayers = sortByPoints(array);
     var graphData = [];
-    $.each(orderedPlayers, function(index, el) {
+    $.each(orderedPlayers, function (index, el) {
         //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
-        $('#playerLeaderboard').append('<tr> <td class="info"> <a href="#"  data-toggle="modal" data-target="#playerInfo">'+orderedPlayers[index][0] + '</a></td>' + '<td class="warning">' + orderedPlayers[index][1]  + '</td> </tr>' );
-        var obj = {name:orderedPlayers[index][0], point: orderedPlayers[index][1] };
+        $('#playerLeaderboard').append('<tr> <td class="col-md-1 col-lg-1 col-xm-1 warning">' + (index + 1) + '</td> <td class="info"> <a href="#"' +
+            '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="warning">' + orderedPlayers[index][1] + '</td> </tr>');
+        var obj = {name: orderedPlayers[index][0], point: orderedPlayers[index][1]};
         graphData.push(obj);
     });
     renderMorrisBar_player(graphData);
@@ -53,9 +58,11 @@ function showPlayerLeaderBoard(array) {
 
 function sortByPoints(array) {
     var sortable = [];
-    for(var player in array){
-        sortable.push([player,array[player]])
-        sortable.sort(function(a,b) {return b[1] - a[1]})
+    for (var player in array) {
+        sortable.push([player, array[player]])
+        sortable.sort(function (a, b) {
+            return b[1] - a[1]
+        })
     }
     return sortable;
 }
@@ -70,10 +77,10 @@ function sortByPoints(array) {
  * @param playerToFind
  * @returns {Array}
  */
-function findPlayers(array, playerToFind){
+function findPlayers(array, playerToFind) {
     var foundMatches = [];
-    for (var i=0; i < array.length; i++)
-        if(array[i].user_id === playerToFind)
+    for (var i = 0; i < array.length; i++)
+        if (array[i].user_id === playerToFind)
             foundMatches.push(array[i]);
     return foundMatches;
 }

@@ -4,9 +4,9 @@
  * Group related functions.
  */
 
-function getGroupData(start,end){
+function getGroupData(start, end) {
     var link = generateLink('groups', start, end);
-    getAjaxData(link).done(function(data){
+    getAjaxData(link).done(function (data) {
         _groupJson = removeEntriesWithZero(data).clean();
         //sort groups by points. So highest scoring comes first
         _groupJson.sort(function (a, b) {
@@ -15,16 +15,16 @@ function getGroupData(start,end){
         });
         leaderBoardPagination(_groupJson);
         //$('#notificationBox').empty().append('<p></p>');
-    }).fail(function (){
-        $.toaster({ priority : 'danger', title : 'Internal Error', message : 'Getting team score blew up the server!'});
+    }).fail(function () {
+        $.toaster({priority: 'danger', title: 'Internal Error', message: 'Getting team score blew up the server!'});
     });
 }
 
-function removeEntriesWithZero(array){
-    $.each(array, function(index, element){
-       if(parseInt(element.points) === 0){
-           delete array[index];
-       }
+function removeEntriesWithZero(array) {
+    $.each(array, function (index, element) {
+        if (parseInt(element.points) === 0) {
+            delete array[index];
+        }
     });
     return array;
 }
@@ -44,7 +44,7 @@ function renderGroupLeaderBoard(data) {
     teamsArray ? (reDisplayGroupLeaderBoard(teamsArray)) : showGroupLeaderBoardError();
 }
 
-function renderMorrisBar_Team(dataArray){
+function renderMorrisBar_Team(dataArray) {
     $("#morris-Teambar-chart").empty();
     Morris.Bar({
         element: 'morris-Teambar-chart',
@@ -61,8 +61,11 @@ function reDisplayGroupLeaderBoard(array) {
     var orderedTeams = sortByPoints(array);
     var graphData = [];
     $.each(orderedTeams, function (index, el) {
-        $('#teamLeaderboard').append('<tr> <td class="success"> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' + '<td class="info">' + el[1] + '</td> </tr>');
-        var obj = {name:el[0], point: el[1] };
+        $('#teamLeaderboard').append('<tr> ' +
+            '<td class="col-md-1 col-lg-1 col-xm-1 warning">' + (index + 1) + '</td> ' +
+            '<td class="success"> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
+            '<td class="info">' + el[1] + '</td> </tr>');
+        var obj = {name: el[0], point: el[1]};
         graphData.push(obj);
     });
     renderMorrisBar_Team(graphData);
@@ -91,19 +94,21 @@ function leaderBoardPagination(groups) {
         //$('#yourlist').append(new Option( currentAirport.airport_name )); adds option tags with item
         //$('#grouplist').append('<li>'+ '<a href="#profile"" data-toggle="tab">'+ currentGroup.title + '</a>' +'</li>'); print names in list
         //draws has table. Column "variant name" is hidden on smaller screens
-        $('#grouplist').append('<tr> <td class="success">' + currentGroup.title + '</td>' + '<td class="info hidden-xs hidden-sm">' + currentGroup.variant_name + '</td>' + '<td class="warning">' + currentGroup.points + '</td> </tr>');
+        $('#grouplist').append('<tr> ' +
+            '<td class="success">' + currentGroup.title + '</td>' +
+            '<td class="info hidden-xs hidden-sm">' + currentGroup.variant_name + '</td>' +
+            '<td class="warning">' + currentGroup.points + '</td> </tr>');
     });
 }
 
 
-function findTeamTickets(array, teamToFind){
+function findTeamTickets(array, teamToFind) {
     var foundMatches = [];
-    for (var i=0; i < array.length; i++)
-        if(array[i].assignedGroup_id === teamToFind)
+    for (var i = 0; i < array.length; i++)
+        if (array[i].assignedGroup_id === teamToFind)
             foundMatches.push(array[i]);
     return foundMatches;
 }
-
 
 
 /**

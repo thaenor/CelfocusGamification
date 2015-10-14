@@ -4,18 +4,18 @@
  * jQuery event handling
  * */
 
- /**
+/**
  * appends html dynamic dates and the number of tickets open.
  * Must only be run once all the ajax requests are completed
  */
- function appendPageElements(){
-     $('#startTimeLabel').append(moment().startOf('month').format('MMMM Do YYYY'));
-     $('#endTimeLabel').append(moment().format('MMMM Do YYYY'));
-     //$('#ticketNumber').empty().append(_openTicketsData.length);
- }
+function appendPageElements() {
+    $('#startTimeLabel').append(moment().startOf('month').format('MMMM Do YYYY'));
+    $('#endTimeLabel').append(moment().format('MMMM Do YYYY'));
+    //$('#ticketNumber').empty().append(_openTicketsData.length);
+}
 
 
- function renderEvents() {
+function renderEvents() {
 
     /**
      * Click event on next button in pagination
@@ -28,16 +28,16 @@
         _pagination[_pageTab]++;
         switch (_pageTab) {
             case 'ticket':
-                if(_pagination[_pageTab] > _maxPageOpenTickets){
+                if (_pagination[_pageTab] > _maxPageOpenTickets) {
                     _pagination[_pageTab]--;
-                    $.toaster({ priority : 'warning', title : 'Notice', message : 'no more pages to show'});
+                    $.toaster({priority: 'warning', title: 'Notice', message: 'no more pages to show'});
                 }
                 ticketPagination(_openTicketsData);
                 break;
             case 'groupLeaderBoard':
-                if(_pagination[_pageTab] > _maxPagePlayerLeaderboard){
+                if (_pagination[_pageTab] > _maxPagePlayerLeaderboard) {
                     _pagination[_pageTab]--;
-                    $.toaster({ priority : 'warning', title : 'Notice', message : 'no more pages to show'});
+                    $.toaster({priority: 'warning', title: 'Notice', message: 'no more pages to show'});
                 }
                 //_barGraphDesignJson = [];
                 leaderBoardPagination(_groupJson);
@@ -57,9 +57,9 @@
     $(".previous").click(function (event) {
         event.preventDefault();
         _pagination[_pageTab]--;
-        if(_pagination[_pageTab] <= 0){
+        if (_pagination[_pageTab] <= 0) {
             _pagination[_pageTab]++;
-            $.toaster({ priority : 'warning', title : 'Notice', message : 'no more pages to show'});
+            $.toaster({priority: 'warning', title: 'Notice', message: 'no more pages to show'});
         }
         updatePageNumber();
         switch (_pageTab) {
@@ -125,26 +125,30 @@
         var start = replaceAll('/', '-', $('#startDatePicker').val());
         var end = replaceAll('/', '-', $('#endDatePicker').val());
         var now = new Date();
-        if( Date.parse(start) < Date.parse(end) && Date.parse(start) < now) {
+        if (Date.parse(start) < Date.parse(end) && Date.parse(start) < now) {
             _pagination["ticket"] = 1;
             _pagination["groupLeaderBoard"] = 1;
             updatePageNumber();
             $("#donut-example").empty();
             getOpenTicketData(start, end);
-            var link = generateLink('resolved',start, end);
-            getAjaxData(link).done(function(data){
+            var link = generateLink('resolved', start, end);
+            getAjaxData(link).done(function (data) {
                 _resolvedTicketsData = data;
                 renderPlayerLeaderBoard(data);
                 renderGroupLeaderBoard(data);
                 $('#startTimeLabel').empty().append(start);
                 $('#endTimeLabel').empty().append(end);
-            }).fail(function(){
-                $.toaster({ priority : 'danger', title : 'Internal Error', message : 'No closed/resolved tickets received'});
+            }).fail(function () {
+                $.toaster({
+                    priority: 'danger',
+                    title: 'Internal Error',
+                    message: 'No closed/resolved tickets received'
+                });
             });
-        }else{
+        } else {
             alert('You set the "End Date" lower than the start date, or the start date is in the future. Please make sure the dates are correct');
         }
-        
+
     });
 
 
@@ -163,81 +167,83 @@
 
 
     /** Button event to post feed */
-    $("#postFeed").click(function(){
+    $("#postFeed").click(function () {
         var post = $('#writtenFeed').val();
-        if(post){
+        if (post) {
             //TODO: make ajax call to post feed
-            $('#articleList').append('<li class="list-group-item">'+ 'You : ' +post + '</li>');
+            $('#articleList').append('<li class="list-group-item">' + 'You : ' + post + '</li>');
         } else {
-            $.toaster({ priority : 'warning', title : 'Newsfeed', message : 'Please write something'});
+            $.toaster({priority: 'warning', title: 'Newsfeed', message: 'Please write something'});
         }
         $('#writtenFeed').val("");
     });
 
-     /** point settings calculation modal event handling*/
-     $("#pointSettingSubmit").click(function(e){
-         e.preventDefault();
-         var p1 = $("#p1PointVal").val();
-         var p2 = $("#p2PointVal").val();
-         var p3 = $("#p3PointVal").val();
-         var p4 = $("#p4PointVal").val();
+    /** point settings calculation modal event handling*/
+    $("#pointSettingSubmit").click(function (e) {
+        e.preventDefault();
+        var p1 = $("#p1PointVal").val();
+        var p2 = $("#p2PointVal").val();
+        var p3 = $("#p3PointVal").val();
+        var p4 = $("#p4PointVal").val();
 
-         var inc = $("#incidentPointVal").val();
-         var problem = $("#problemPointVal").val();
-         var serviceReq = $("#serviceReqPointVal").val();
-         if(p1===""||p2===""||p3===""||p4===""||inc===""||problem===""||serviceReq === "") {
-             $.toaster({ priority : 'warning', title : 'point settings', message : 'you did not fill the entire' +
-             ' form'});
-             return true;
-         }
-         if(parseInt(p1)>0||parseInt(p2)>0||parseInt(p3)>0||parseInt(p4)>0||parseInt(inc)>0||parseInt(problem)>0||parseInt(serviceReq )>0) {
-             calculatorPointSettings.p1 = parseInt(p1);
-             calculatorPointSettings.p2 = parseInt(p2);
-             calculatorPointSettings.p3 = parseInt(p3);
-             calculatorPointSettings.p4 = parseInt(p4);
-             calculatorPointSettings.inc = parseInt(inc);
-             calculatorPointSettings.prob = parseInt(problem);
-             calculatorPointSettings.serviceReq = parseInt(serviceReq);
-             renderPlayerLeaderBoard(_resolvedTicketsData);
-             renderGroupLeaderBoard(_resolvedTicketsData);
-         }else{
-             $.toaster({ priority : 'warning', title : 'point settings', message : 'invalid fields'});
-         }
-     });
+        var inc = $("#incidentPointVal").val();
+        var problem = $("#problemPointVal").val();
+        var serviceReq = $("#serviceReqPointVal").val();
+        if (p1 === "" || p2 === "" || p3 === "" || p4 === "" || inc === "" || problem === "" || serviceReq === "") {
+            $.toaster({
+                priority: 'warning', title: 'point settings', message: 'you did not fill the entire' +
+                ' form'
+            });
+            return true;
+        }
+        if (parseInt(p1) > 0 || parseInt(p2) > 0 || parseInt(p3) > 0 || parseInt(p4) > 0 || parseInt(inc) > 0 || parseInt(problem) > 0 || parseInt(serviceReq) > 0) {
+            calculatorPointSettings.p1 = parseInt(p1);
+            calculatorPointSettings.p2 = parseInt(p2);
+            calculatorPointSettings.p3 = parseInt(p3);
+            calculatorPointSettings.p4 = parseInt(p4);
+            calculatorPointSettings.inc = parseInt(inc);
+            calculatorPointSettings.prob = parseInt(problem);
+            calculatorPointSettings.serviceReq = parseInt(serviceReq);
+            renderPlayerLeaderBoard(_resolvedTicketsData);
+            renderGroupLeaderBoard(_resolvedTicketsData);
+        } else {
+            $.toaster({priority: 'warning', title: 'point settings', message: 'invalid fields'});
+        }
+    });
 
-     $("#AutomationTogler").click(function(){
-         if(_automationFlag == true){
-             _automationFlag=false;
-             automator(_automationFlag);
-             $("#AutomationTogler").text("Enable Automation");
-         } else{
-             _automationFlag=true;
-             automator(_automationFlag);
-             $("#AutomationTogler").text("Disable Automation");
-         }
-     });
+    $("#AutomationTogler").click(function () {
+        if (_automationFlag == true) {
+            _automationFlag = false;
+            automator(_automationFlag);
+            $("#AutomationTogler").text("Enable Automation");
+        } else {
+            _automationFlag = true;
+            automator(_automationFlag);
+            $("#AutomationTogler").text("Disable Automation");
+        }
+    });
 
     /** Event that triggers modal with player points details. Attach a delegated event handler */
-    $( "#playerLeaderboard" ).on( "click", "a", function( event ) {
+    $("#playerLeaderboard").on("click", "a", function (event) {
         event.preventDefault();
-        $("#playerDetails").empty().append( $(this).text()+'\'s information');
+        $("#playerDetails").empty().append($(this).text() + '\'s information');
         renderPlayerDetailtModal($(this).text());
     });
 
     /** Event that triggers modal with ticket details */
-    $("#ticketList").on("click","a",function(event){
+    $("#ticketList").on("click", "a", function (event) {
         event.preventDefault();
         var title = $(this).text();
-        $("#ticketDetails").empty().append(title+' related data:');
+        $("#ticketDetails").empty().append(title + ' related data:');
         var addressValue = $(this).attr("href");
-        addressValue = addressValue.replace("#","").trim();
+        addressValue = addressValue.replace("#", "").trim();
         renderTicketDetailsModal(addressValue);
     });
 
-     /**Event that triggers modal with team details*/
-     $("#table-teamleaderboard").on("click","a",function(event){
-         event.preventDefault();
-         $("#teamDetails").empty().append( $(this).text()+'\'s information');
-         renderTeamDetailModal($(this).text());
-     })
+    /**Event that triggers modal with team details*/
+    $("#table-teamleaderboard").on("click", "a", function (event) {
+        event.preventDefault();
+        $("#teamDetails").empty().append($(this).text() + '\'s information');
+        renderTeamDetailModal($(this).text());
+    })
 }

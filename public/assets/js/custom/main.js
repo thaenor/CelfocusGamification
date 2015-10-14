@@ -28,7 +28,7 @@ var calculatorPointSettings = {
 };
 var _automationFlag = true;
 
-Array.prototype.clean = function(deleteValue) {
+Array.prototype.clean = function (deleteValue) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == deleteValue) {
             this.splice(i, 1);
@@ -40,13 +40,14 @@ Array.prototype.clean = function(deleteValue) {
 
 $(document).ready(function () {
     jQuery.ajaxSetup({
-        beforeSend: function() {
+        beforeSend: function () {
             $('#loader').show();
         },
-        complete: function(){
+        complete: function () {
             $('#loader').hide();
         },
-        success: function() {}
+        success: function () {
+        }
     });
     welcome();
     getOpenTicketData();
@@ -58,8 +59,8 @@ $(document).ready(function () {
     automator(_automationFlag);
 });
 
-function automator(bool){
-    if(bool === true){
+function automator(bool) {
+    if (bool === true) {
         console.log("automation running...");
         /** Automation made simple. This clicks a random tab every 5 minutes */
         tabSwitcher = setInterval(function () {
@@ -67,13 +68,13 @@ function automator(bool){
         }, 300000);
         /**changes page every 2 minutes*/
         pageSwitcher = setInterval(function () {
-            var randomBoolean = !(+new Date()%2);
+            var randomBoolean = !(+new Date() % 2);
             (randomBoolean ? $('.next').first().find('a:first').click() : $('.previous').first().find('a:first').click());
         }, 120000);
-        pageReloader = setInterval(function (){
+        pageReloader = setInterval(function () {
             location.reload();
         }, 900000)
-    }else{
+    } else {
         console.log("automation stopped.");
         clearInterval(tabSwitcher);
         clearInterval(pageSwitcher);
@@ -82,37 +83,37 @@ function automator(bool){
 }
 
 $(document).ajaxStop(function () {
-	$.toaster({ priority : 'info', title : 'Notice', message : 'Information Refreshed'});
+    $.toaster({priority: 'info', title: 'Notice', message: 'Information Refreshed'});
     var lenghtOfOpenTicketsArray = _openTicketsData.length;
     $('#ticketNumber').empty().append(lenghtOfOpenTicketsArray);
     _maxPageOpenTickets = Math.ceil(lenghtOfOpenTicketsArray / _recPerPage);
-    _maxPagePlayerLeaderboard = Math.ceil(_groupJson.length/_recPerPage);
+    _maxPagePlayerLeaderboard = Math.ceil(_groupJson.length / _recPerPage);
     drawMorrisDonnutChart();
 });
 
 /*function getChallenges(){
-    var link = generateLink('getChallengesCount');
-    getAjaxData(link).done(function(result){
-        $('#challengeCount').empty().append(result);
-    }).fail(function(){
-        $.toaster({ priority : 'warning', title : 'Challenges', message : 'failed to count'});
-    });
-}*/
+ var link = generateLink('getChallengesCount');
+ getAjaxData(link).done(function(result){
+ $('#challengeCount').empty().append(result);
+ }).fail(function(){
+ $.toaster({ priority : 'warning', title : 'Challenges', message : 'failed to count'});
+ });
+ }*/
 
-function getArticles(){
+function getArticles() {
     $('#articleList').empty();
     var link = generateLink('articles');
     getAjaxData(link).done(function showArticles(data) {
         allArticles = data;
         displayArticles(data);
-    }).fail(function(){
-        $.toaster({ priority : 'warning', title : 'Newsfeed', message : 'no articles to show'});
+    }).fail(function () {
+        $.toaster({priority: 'warning', title: 'Newsfeed', message: 'no articles to show'});
     });
 }
 
-function displayArticles(data){
+function displayArticles(data) {
     $.each(data, function (i, currentArticle) {
-        $('#articleList').append('<li class="list-group-item">'+currentArticle.author+' : '+ currentArticle.body+'</li>');
+        $('#articleList').append('<li class="list-group-item">' + currentArticle.author + ' : ' + currentArticle.body + '</li>');
     });
 }
 
@@ -120,7 +121,7 @@ function updatePageNumber() {
     $('.pageNumber').empty().append('<i class="glyphicon glyphicon-th-list"></i> Page: ' + _pagination[_pageTab]);
 }
 
-function welcome(){
+function welcome() {
     var now = new Date();
     var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
     $('#welcome').append(greeting + ' - ');
@@ -128,17 +129,17 @@ function welcome(){
     appendPageElements();
 }
 
-function tabClicker(){
+function tabClicker() {
     var tabbedArray = ["#ticket-tab", /*"#newsfeed-tab",*/ /*"#groupLeaderboard-tab",*/ "#player-leaderboard-tab",
-     "#graph-tab", "#team-leaderboard-tab"];
+        "#graph-tab", "#team-leaderboard-tab"];
     var selectedTabIndex = Math.floor((Math.random() * tabbedArray.length));
     var buttonToClick = tabbedArray[selectedTabIndex];
-$(buttonToClick).click();
+    $(buttonToClick).click();
 }
 
 /* these warning messages have been replaced with toaster - http://www.jqueryscript.net/other/jQuery-Bootstrap-Based-Toast-Notification-Plugin-toaster.html
 
-function showTicketErrorMessage() {
+ function showTicketErrorMessage() {
  $('#ticketList').empty().append('<div class="alert alert-danger" role="alert">Something went wrong... these aren\'t the tickets you are looking for...</div>');
  }
 
