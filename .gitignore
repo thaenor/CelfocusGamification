@@ -4,3 +4,4 @@
 public/assets/pacman/
 resources/views/secretRoute/pacman/
 .env.example
+.idea/
