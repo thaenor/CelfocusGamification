@@ -1,4 +1,6 @@
-/bootstrap/compiled.php
-.env.*.php
-.env.php
+/vendor
+/node_modules
 .env
+public/assets/pacman/
+resources/views/secretRoute/pacman/
+.env.example
