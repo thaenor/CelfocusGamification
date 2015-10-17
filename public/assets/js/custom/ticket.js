@@ -7,14 +7,44 @@
 function getOpenTicketData(start, end) {
     var link = generateLink('open', start, end);
     getAjaxData(link).done(function (data) {
-        _openTicketsData = data;
-        _openTicketsData.sort(sort_by('priority', false, function (a) {
-            return a.toUpperCase()
-        }));
-        ticketPagination(data);
+        _openTicketsData = sortTicketList(data);
+        // this block of code used to sort all tickets by priority
+        //_openTicketsData.sort(sort_by('priority', false, function (a) {
+        //    return a.toUpperCase()
+        //}));
+        ticketPagination(_openTicketsData);
     }).fail(function () {
         $.toaster({priority: 'danger', title: 'Tickets', message: 'No open tickets to show.'})
     });
+}
+
+function sortTicketList(data){
+    var p1Array=[], p2Array=[], p3Array=[], p4Array=[];
+    $.each(data, function(index, el){
+        switch (el.priority) {
+            case '1 Critical':
+                p1Array.push(el);
+                break;
+            case '2 High':
+                p2Array.push(el);
+                break;
+            case '3 Medium':
+                p3Array.push(el);
+                break;
+            case '4 Low':
+                p4Array.push(el);
+                break;
+        }
+    });
+    var endArray = p3Array.concat(p4Array);
+    for(var i=0; i<endArray.length; i++){
+        //ENHANCEMENT: when the ticket objects contains the element "escalation solution time" update this if
+        if(parseFloat(endArray[i].percentage) > 70){
+            p2Array.push(endArray[i]);
+            endArray.splice(i,1);
+        }
+    }
+    return p1Array.concat(p2Array,endArray);
 }
 
 function getResolvedAndReopenedTicketData(start, end) {
@@ -311,7 +341,7 @@ function displayTicketPercentage(percentage) {
 }
 
 function renderTicketDetailsModal(ticketId) {
-    var ticket = findTicket(_openTicketsData, ticketId);
+    var ticket = findTicket(_openTicketsData, parseInt(ticketId));
     var timeToSolveInHours = parseInt(ticket.sla_time) / 60;
     if (ticket != false) {
         $("#ticketInfo").empty().append('<ul class="list-group">' +
