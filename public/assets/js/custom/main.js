@@ -139,7 +139,7 @@ function updatePageNumber() {
 
 function welcome() {
     var now = new Date();
-    var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
+    var greeting = "Good" + ((now.getHours() > 17) ? " evening" : " day");
     $('#welcome').append(greeting + ' - ');
     $('#timeTravelTrigger').prop('disabled', true);
     appendPageElements();

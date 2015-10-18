@@ -67,7 +67,7 @@ class Ticket extends Model {
         return DB::select(DB::raw("
             select * from (
             SELECT 
-            tickets.id, tickets.title, tickets.state, tickets.type, tickets.priority, tickets.sla, tickets.sla_time, users.full_name AS user_id, groups.title AS assignedGroup_id, tickets.points, tickets.percentage, tickets.created_at, tickets.updated_at, tickets.external_id
+            tickets.id, tickets.tn, tickets.escalation_solution_time, tickets.title, tickets.state, tickets.type, tickets.priority, tickets.sla, tickets.sla_time, users.full_name AS user_id, groups.title AS assignedGroup_id, tickets.points, tickets.percentage, tickets.created_at, tickets.updated_at, tickets.external_id
             FROM tickets
             INNER JOIN users ON users.id = user_id
             INNER JOIN groups ON groups.id = assignedGroup_id

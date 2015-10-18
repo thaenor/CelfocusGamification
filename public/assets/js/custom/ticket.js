@@ -194,55 +194,57 @@ function renderDetailModal(data, pageList) {
     var incidentCount = 0, incidentPointCount = 0, problemCount = 0, problemPointCount = 0, serviceRequestCount = 0, srPointCount = 0, slaPenalty = 0, slaOutput = "";
 
     $.each(data, function (index, el) {
+        var maxPoints = 0;
+        switch (el.priority) {
+            case '1 Critical':
+                criticalCount++;
+                (el.percentage > 40) ? (maxPoints += calculatorPointSettings.p1):(criticalPointCount += calculatorPointSettings.p1);
+                break;
+            case '2 High':
+                highCount++;
+                (el.percentage > 40) ? (maxPoints += calculatorPointSettings.p2):(highPointCount += calculatorPointSettings.p2);
+                break;
+            case '3 Medium':
+                mediumCount++;
+                (el.percentage > 40) ? (maxPoints += calculatorPointSettings.p3):(mediumPointCount += calculatorPointSettings.p3);
+                break;
+            case '4 Low':
+                lowCount++;
+                (el.percentage > 40) ? (maxPoints += calculatorPointSettings.p4):(lowPointCount += calculatorPointSettings.p4);
+                break;
+            default:
+                console.log("warning: the following ticket had an unmatched priority index pos:("+index+")");
+                console.log(el);
+                break;
+        }
+        switch (el.type) {
+            case "Incident":
+                incidentCount++;
+                (el.percentage>40) ? (maxPoints+=calculatorPointSettings.inc):(incidentPointCount+=calculatorPointSettings.inc);
+                break;
+            case "Service Request":
+                serviceRequestCount++;
+                (el.percentage>40) ? (maxPoints += calculatorPointSettings.serviceReq):(srPointCount += calculatorPointSettings.serviceReq);
+                break;
+            case "Problem":
+                problemCount++;
+                (el.percentage>40) ? (maxPoints += calculatorPointSettings.serviceReq):(problemPointCount += calculatorPointSettings.prob);
+                break;
+            default:
+                console.log("warning: the following ticket had an unmatched type index pos:("+index+")");
+                console.log(el);
+                break;
+        }
         if (el.percentage > 40) {
             if (el.percentage < 100) {
                 //slaPenalty = ( el.points * (el.percentage / 100) );
                 //slaPenalty = Math.ceil(slaPenalty);
-                slaOutput += "<li class='list-group-item list-group-item-warning'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> is <abbr title='means the sla is getting big'>mouldy</abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + " Points earned</span> </br></li>";
+                slaOutput += "<li class='list-group-item list-group-item-warning'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> is <abbr title='means the sla is getting big'>mouldy</abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + "/" + maxPoints + " Points earned</span> </br></li>";
             }
             if (el.percentage > 100) {
                 //slaPenalty = el.points - (el.points * (el.percentage / 100));
                 //slaPenalty = Math.floor(slaPenalty);
-                slaOutput += "<li class='list-group-item list-group-item-danger'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> <abbr title='sla went KAPUT!'> blew up!1! </abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + " Points Lost</span> </br></li>";
-            }
-        } else {
-            switch (el.priority) {
-                case '1 Critical':
-                    criticalCount++;
-                    criticalPointCount += calculatorPointSettings.p1;
-                    break;
-                case '2 High':
-                    highCount++;
-                    highPointCount += calculatorPointSettings.p2;
-                    break;
-                case '3 Medium':
-                    mediumCount++;
-                    mediumPointCount += calculatorPointSettings.p3;
-                    break;
-                case '4 Low':
-                    lowCount++;
-                    lowPointCount += calculatorPointSettings.p4;
-                    break;
-                default:
-                    points += 0;
-                    break;
-            }
-            switch (el.type) {
-                case "Incident":
-                    incidentCount++;
-                    incidentPointCount += calculatorPointSettings.inc;
-                    break;
-                case "Service Request":
-                    serviceRequestCount++;
-                    srPointCount += calculatorPointSettings.serviceReq;
-                    break;
-                case "Problem":
-                    problemCount++;
-                    problemPointCount += calculatorPointSettings.prob;
-                    break;
-                default:
-                    points += 0;
-                    break;
+                slaOutput += "<li class='list-group-item list-group-item-danger'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> <abbr title='sla went KAPUT!'> blew up!1! </abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + "/" + maxPoints + " Points Lost</span> </br></li>";
             }
         }
     });
