@@ -17,7 +17,12 @@ class SettingsController extends Controller {
 	public function index()
 	{
 		$settings = PointSettings::all();
-		return view('settings.index',compact('settings'));
+        $blacklist = user_blacklist::all();
+        $blacklistString = "";
+        foreach($blacklist as $element){
+            $blacklistString= $blacklistString. $element->username.",";
+        }
+		return view('settings.index',compact('settings','blacklistString'));
 	}
 
 	/**

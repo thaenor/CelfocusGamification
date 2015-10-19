@@ -63,7 +63,7 @@
             </hr>
             {!! Form::open(['url'=>'settings/storeblacklist']) !!}
                 <div class="form-group">
-                {!! Form::textarea('blacklist', null, ['class' => 'field form-control']) !!}
+                {!! Form::textarea('blacklist', $blacklistString, ['class' => 'field form-control']) !!}
             	</div>
             <div class="form-group">
                 {!! Form::submit('Blacklist users', ['class'=>'btn btn-warning form-control']) !!}
