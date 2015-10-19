@@ -36,15 +36,38 @@ function sortTicketList(data){
                 break;
         }
     });
-    var endArray = p3Array.concat(p4Array);
-    for(var i=0; i<endArray.length; i++){
-        //ENHANCEMENT: when the ticket objects contains the element "escalation solution time" update this if
-        if(parseFloat(endArray[i].percentage) > 70){
-            p2Array.push(endArray[i]);
-            endArray.splice(i,1);
+    var midArray = p3Array.concat(p4Array);
+    var finalArr = [];
+
+    for(var c=0; c<midArray.length; c++){
+        if(midArray[c].escalation_solution_time === 0){
+            finalArr.push(midArray[c]);
+            delete midArray[c];
         }
     }
-    return p1Array.concat(p2Array,endArray);
+    midArray = midArray.clean();
+
+    function compare(a,b) {
+        if (moment(a.escalation_solution_time) < moment(b.escalation_solution_time))
+            return -1;
+        if (moment(a.escalation_solution_time) > moment(b.escalation_solution_time))
+            return 1;
+        return 0;
+    }
+
+    midArray.sort(compare);
+    /*for(var i=0; i<midArray.length; i++){
+        for(var j=0; j<midArray.length; j++){
+            var momenti = moment(midArray[i].escalation_solution_time);
+            var momentj = moment(midArray[j].escalation_solution_time);
+            if(momentj.isBefore(momenti)){
+                p2Array.push(midArray[j]);
+            }
+        }
+    }*/
+    //midArray = midArray.clean();
+
+    return p1Array.concat(p2Array,midArray,finalArr);
 }
 
 function getResolvedAndReopenedTicketData(start, end) {
@@ -348,8 +371,8 @@ function renderTicketDetailsModal(ticketId) {
     if (ticket != false) {
         $("#ticketInfo").empty().append('<ul class="list-group">' +
             '<li class="list-group-item"> internal id: ' + ticket.id + '</li>' +
-            '<li class="list-group-item"> tn: ' + ticket.tn + '</li>' +
-            '<li class="list-group-item"> time: ' + moment.unix(ticket.escalation_solution_time).format() + '</li>' +
+            //'<li class="list-group-item"> tn: ' + ticket.tn + '</li>' +
+            //'<li class="list-group-item"> time: ' + moment.unix(ticket.escalation_solution_time).format("dddd, MMMM Do YYYY, h:mm:ss a") + '</li>' +
             '<li class="list-group-item"> title: ' + ticket.title + '</li>' +
             '<li class="list-group-item"> status: ' + ticket.state + '</li>' +
             '<li class="list-group-item"> <b> type: ' + ticket.type + '</b> </li>' +
