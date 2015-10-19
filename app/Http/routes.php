@@ -41,6 +41,7 @@ Route::group(array('prefix' => 'secretRoute'), function()
 
 Route::get('settings',['middleware' => 'auth','uses' => 'SettingsController@index']);
 Route::post('settings/storepoints',['middleware' => 'auth','uses' => 'SettingsController@storePoints']);
+Route::post('settings/storeblacklist',['middleware' => 'auth','uses' => 'SettingsController@storeBlackList']);
 
 //API routes, suitable to be called through ajax
 Route::group(array('prefix' => 'api/v1'), function()

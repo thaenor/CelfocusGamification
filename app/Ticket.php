@@ -21,17 +21,27 @@ class Ticket extends Model {
      * @return mixed
      */
     public static function getClosedTicketsBetween($start, $end){
-        return DB::select(DB::raw("
+        $rowData = DB::select(DB::raw("
             select * from (
-            SELECT 
+            SELECT
             tickets.id, tickets.title, tickets.state, tickets.type, tickets.priority, tickets.sla, users.full_name AS user_id, groups.title AS assignedGroup_id, tickets.points, tickets.percentage, tickets.created_at, tickets.updated_at, tickets.external_id
             FROM tickets
             INNER JOIN users ON users.id = user_id
             INNER JOIN groups ON groups.id = assignedGroup_id
             WHERE tickets.created_at > '$start' AND tickets.created_at < '$end'
-            ) as t 
+            ) as t
             WHERE state = 'closed' OR state = 'Resolved'
         "));
+        $blacklist = user_blacklist::all();
+        foreach($blacklist as $blacklistedUser){
+            foreach($rowData as $key => $value){
+                if($blacklistedUser->username == $value->user_id){
+                    unset($rowData[$key]);
+                }
+            }
+        }
+        $rowData = array_values($rowData);
+        return $rowData;
     }
     /*
      * WARNING - INFORMATION:

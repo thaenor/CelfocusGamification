@@ -59,14 +59,14 @@
             <h2>Users to be ommited from leaderboard</h2>
             <p>OTRS records some temporary and managment user accounts that create and manage tickets. These users will 
             	appear in the dashboard by default, to ommit them write down their names in the text area bellow.</p>
-            	<em>WARNING: the names must be separated by commas.</em>
+            	<em>WARNING: the names must be separated by commas. (NO SPACES)</em>
             </hr>
-            {!! Form::open() !!}
+            {!! Form::open(['url'=>'settings/storeblacklist']) !!}
                 <div class="form-group">
-                {!! Form::textarea('notes', null, ['class' => 'field form-control']) !!}
+                {!! Form::textarea('blacklist', null, ['class' => 'field form-control']) !!}
             	</div>
             <div class="form-group">
-                {!! Form::submit('Hide users', ['class'=>'btn btn-warning form-control']) !!}
+                {!! Form::submit('Blacklist users', ['class'=>'btn btn-warning form-control']) !!}
             </div>
             {!! Form::close() !!}
         </div>

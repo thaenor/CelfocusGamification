@@ -3,10 +3,16 @@ Author : www.webthemez.com
 License: Commons Attribution 3.0
 http://creativecommons.org/licenses/by/3.0/
 ------------------------------------------------*/
-
-
+#logo{
+  width:50%; /* you can use % */
+  height: auto;
+}
+/*.btn-danger {
+    background: #9C2AA0;
+    color: #ffffff;
+}*/
 /*----------------------------------------------
-    COMMON  STYLES    
+    COMMON  STYLES
 ------------------------------------------------*/
 body {
     font-family: 'Open Sans', sans-serif;
@@ -86,11 +92,6 @@ body {
     }
 }
 
-.btn-danger {
-    background: #9C2AA0;
-    color: #ffffff;
-}
-
  #wrapper {
     width: 100%;
     background: #2b2e33;
@@ -100,7 +101,7 @@ body {
     padding: 15px 15px;
     min-height: 600px;
     background: #f3f3f3;
-   
+
 }
 #page-inner {
     width:100%;
@@ -128,7 +129,7 @@ h4 {
     padding-top:10px;
 }
 .square-btn-adjust {
-    border: 0px solid transparent; 
+    border: 0px solid transparent;
    -webkit-border-radius: 0px;
 -moz-border-radius: 0px;
 border-radius: 0px;
@@ -183,14 +184,14 @@ list-style: none;
 border-radius: 0;
 }
 /*----------------------------------------------
-   DASHBOARD STYLES    
+   DASHBOARD STYLES
 ------------------------------------------------*/
 .page-header {
 padding-bottom: 9px;
 margin: 10px 0 20px;
 border-bottom: 1px solid transparent;
 }
-.panel-left{  
+.panel-left{
 width: 35%;
 height: 158px;
 background: #5CB85C;
@@ -201,14 +202,14 @@ color: rgba(255, 255, 255, 0.15);
 padding: 40px 0;
 margin-bottom:30px;
 }
-.panel-right{ 
+.panel-right{
 width: 65%;
 height: 158px;
 background: transparent;
 margin-bottom: 0;
 color: #fff;
 }
-.panel-right h3{  
+.panel-right h3{
 font-size: 50px;
 padding: 31px 10px 13px;
 color: rgba(255, 255, 255, 0.96);
@@ -285,13 +286,13 @@ color:#fff;
   .brown {
 background-color: #f0ad4e;
 color:#fff;
-} 
+}
  .back-footer-red {
 background-color: #F0433D;
 color:#fff;
 border-top: 0px solid #fff;
 }
- 
+
  .icon-box-right {
 display: block;
 float: right;
@@ -379,7 +380,7 @@ line-height: 30px;
 #easypiechart-orange .percent { color: #ffb53e;}
 #easypiechart-red .percent { color: #ef4040;}
 
-	 
+
  .chat-panel .panel-body {
 height: 450px;
 overflow-y: scroll;
@@ -408,7 +409,7 @@ footer p{
 font-size: 14px;
 }
 /*----------------------------------------------
-    MENU STYLES    
+    MENU STYLES
 ------------------------------------------------*/
 
 
@@ -473,7 +474,7 @@ overflow: hidden;
 background-color: #f5f5f5;
 border-radius: 0px;
 }
-.dropdown-tasks > li > a { 
+.dropdown-tasks > li > a {
 padding: 0px 15px;
 }
 .dropdown-tasks p {
@@ -524,7 +525,7 @@ color: #fff !important;
 	color: #B5B5B5;
 	background:transparent;
 	text-shadow:none;
-	
+
 }
 .sidebar-collapse > .nav > li > a {
 	padding: 12px 10px;
@@ -537,24 +538,24 @@ background: #17191B;
 }
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	 
+
 	outline:0;
 }
- 
+
 .navbar-side {
 	border:none;
 	background-color: transparent;
-	
+
 }
 .top-navbar {
 	background: #fff;
 	border-bottom:none;
-	
+
 }
 .top-navbar .nav > li > a > i {
 margin-right: 2px;
 }
-.top-navbar .navbar-brand:hover { 
+.top-navbar .navbar-brand:hover {
 color: #2DAFCB;
 
 background-color: rgb(43, 46, 51);
@@ -564,7 +565,7 @@ margin: 8px 0;
 }
 .navbar-default {
 border:0px solid black;
-     
+
 }
 .navbar-header {
     background: transparent;
@@ -584,7 +585,7 @@ background-color: #FFF;
     color: #666;
 }
 /*----------------------------------------------
-    UI ELEMENTS STYLES     
+    UI ELEMENTS STYLES
 ------------------------------------------------*/
 .btn-circle {
 width: 50px;
@@ -599,28 +600,28 @@ line-height: 1.428571429;
 }
 
 /*----------------------------------------------
-    MEDIA QUERIES     
+    MEDIA QUERIES
 ------------------------------------------------*/
- 
+
  @media(min-width:768px) {
      #page-wrapper{
                margin: 0 0 0 260px;
         padding: 15px 30px;
-        
+
                min-height: 1200px;
-		
+
     }
-	
-	
+
+
     .navbar-side {
         z-index: 1;
         width: 260px;
     }
 
    .navbar {
- border-radius: 0px; 
+ border-radius: 0px;
 }
-   
+
 }
  @media(max-width:480px) {
 .page-header small {
@@ -629,5 +630,3 @@ padding-top: 14px;
 font-size: 19px;
 }
 }
-
-

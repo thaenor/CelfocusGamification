@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\User;
+use App\user_blacklist;
 use Request;
 use App\Http\Controllers\Controller;
 
@@ -36,6 +38,18 @@ class SettingsController extends Controller {
         return "points updated successfully";
 	}
 
-
+    public function storeBlackList()
+    {
+        $input = Request::all();
+        $response = explode(",", $input['blacklist']);
+        foreach($response as $elment){
+            $user = User::where('full_name',$elment)->get();
+            $blacklist = new user_blacklist();
+            $blacklist->user_id = $user[0]->id;
+            $blacklist->username = $user[0]->full_name;
+						$blacklist->save();
+        }
+        return 'recorded data successfully';
+    }
 
 }
