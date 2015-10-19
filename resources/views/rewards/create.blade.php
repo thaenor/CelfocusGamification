@@ -25,16 +25,6 @@
                      <input type="text" name="winner" class="form-control" value=""/>
                 </div>
 
-                <hr/>
-                <h2>Reward for:</h2>
-                <div class="form-group">
-                    <select class="form-control">
-                        @foreach($jsonData as $ticket)
-                            <option value="{{$ticket->id}}">{{$ticket->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
 
             <a class="btn btn-default" href="{{ route('rewards.index') }}">Back</a>
             <button class="btn btn-primary" type="submit" >Create</a>

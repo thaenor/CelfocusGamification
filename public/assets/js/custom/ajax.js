@@ -31,6 +31,9 @@ function generateLink(type, start, end){
         case 'articles':
             link = '/api/v1/articles/';
             break;
+        case 'pointSettings':
+            link = 'api/v1/getPointSettings';
+            break;
         default:
             link = '/api/v1/openTickets/';
     }

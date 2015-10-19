@@ -32,10 +32,7 @@ class RewardController extends Controller {
 	 */
 	public function create()
 	{
-        $dal = connect();
-        $jsonData = json_decode(getTicketsFromLastWeek());
-        closeDB($dal);
-		return view('rewards.create',compact('jsonData'));
+		return view('rewards.create');
 	}
 
 	/**

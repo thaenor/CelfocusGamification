@@ -145,6 +145,7 @@ function renderEvents() {
                     message: 'No closed/resolved tickets received'
                 });
             });
+            getPointSettings();
         } else {
             alert('You set the "End Date" lower than the start date, or the start date is in the future. Please make sure the dates are correct');
         }

@@ -14,13 +14,13 @@
 
 //landing page
 Route::get('/', 'HomeController@index');
-//not sure what this one's doing here
+
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-    'logout' => 'Auth\AuthController',
+  'logout' => 'Auth\AuthController',
 ]);
 
 //Resource routes
@@ -31,19 +31,16 @@ Route::resource('rewards', 'RewardController');
 //Route::resource('users', 'UserController');
 Route::resource('tickets', 'TicketController');
 
-//shhhh! Secret routes are not meant to be used by common mortals
 Route::group(array('prefix' => 'secretRoute'), function()
 {
-    //Route::get('calculatePoints','TicketController@calculatePoints');
-    Route::get('sync', ['middleware' => 'auth', 'uses' => 'TicketController@sync']);
-    Route::get('soap', ['middleware' => 'auth', 'uses' => 'SoapController@index']);
-    //Route::get('calculate','TicketController@calculatePoints');
-    //Route::get('manualmigration','TicketController@manualMigration');
     Route::get('FranciscoSantos-oGajoDeCalcoes', function()
     {
         return view('secretRoute.pacman.pacman');
     });
 });
+
+Route::get('settings',['middleware' => 'auth','uses' => 'SettingsController@index']);
+Route::post('settings/storepoints',['middleware' => 'auth','uses' => 'SettingsController@storePoints']);
 
 //API routes, suitable to be called through ajax
 Route::group(array('prefix' => 'api/v1'), function()
@@ -59,4 +56,5 @@ Route::group(array('prefix' => 'api/v1'), function()
     Route::get('groups', 'ApiController@fetchGroupJson');
     Route::get('articles', 'ApiController@fetchArticles');
     Route::get('getChallengesCount', 'ApiController@getChallengesCount');
+    Route::get('getPointSettings', 'ApiController@getPointSettings');
 });

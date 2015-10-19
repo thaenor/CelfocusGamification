@@ -235,13 +235,13 @@ function renderDetailModal(data, pageList) {
                 console.log(el);
                 break;
         }
-        if (el.percentage > 40) {
-            if (el.percentage < 100) {
+        if (el.percentage > calculatorPointSettings.warningPercent) {
+            if (el.percentage < calculatorPointSettings.penaltyPercent) {
                 //slaPenalty = ( el.points * (el.percentage / 100) );
                 //slaPenalty = Math.ceil(slaPenalty);
                 slaOutput += "<li class='list-group-item list-group-item-warning'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> is <abbr title='means the sla is getting big'>mouldy</abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + "/" + maxPoints + " Points earned</span> </br></li>";
             }
-            if (el.percentage > 100) {
+            if (el.percentage > calculatorPointSettings.penaltyPercent) {
                 //slaPenalty = el.points - (el.points * (el.percentage / 100));
                 //slaPenalty = Math.floor(slaPenalty);
                 slaOutput += "<li class='list-group-item list-group-item-danger'> <em> the ticket <abbr title='" + el.id + "'>" + el.title + "</abbr> <abbr title='sla went KAPUT!'> blew up!1! </abbr> </em> - " + el.percentage + "% <span class='badge'>" + el.points + "/" + maxPoints + " Points Lost</span> </br></li>";
@@ -320,10 +320,10 @@ function fooCalculator(ticket) {
             points += 0;
             break;
     }
-    if (ticket.percentage > 40) {
-        if (ticket.percentage < 100) {
+    if (ticket.percentage > calculatorPointSettings.warningPercent) {
+        if (ticket.percentage < calculatorPointSettings.penaltyPercent) {
             points = Math.ceil(points * (ticket.percentage / 100));
-        } else if (ticket.percentage > 100) {
+        } else if (ticket.percentage > calculatorPointSettings.penaltyPercent) {
             points = Math.floor(points - (points * (ticket.percentage / 100)));
         }
     }
@@ -347,7 +347,9 @@ function renderTicketDetailsModal(ticketId) {
     var timeToSolveInHours = parseInt(ticket.sla_time) / 60;
     if (ticket != false) {
         $("#ticketInfo").empty().append('<ul class="list-group">' +
-            '<li class="list-group-item"> id: #' + ticket.id + '</li>' +
+            '<li class="list-group-item"> internal id: ' + ticket.id + '</li>' +
+            '<li class="list-group-item"> tn: ' + ticket.tn + '</li>' +
+            '<li class="list-group-item"> time: ' + moment.unix(ticket.escalation_solution_time).format() + '</li>' +
             '<li class="list-group-item"> title: ' + ticket.title + '</li>' +
             '<li class="list-group-item"> status: ' + ticket.state + '</li>' +
             '<li class="list-group-item"> <b> type: ' + ticket.type + '</b> </li>' +

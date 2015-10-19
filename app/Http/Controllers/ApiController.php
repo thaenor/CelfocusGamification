@@ -3,6 +3,7 @@
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\PointSettings;
 use App\Reward;
 use Carbon\Carbon;
 use App\Ticket;
@@ -128,6 +129,11 @@ class ApiController extends Controller {
 
     public function getChallengesCount(){
         return $count = Reward::all()->count();
+    }
+
+    public function getPointSettings()
+    {
+        return PointSettings::all();
     }
 
 }

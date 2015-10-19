@@ -24,7 +24,9 @@ var calculatorPointSettings = {
     p4: 1,
     inc: 7,
     prob: 10,
-    serviceReq: 5
+    serviceReq: 5,
+    warningPercent: 40,
+    penaltyPercent: 100
 };
 var _automationFlag = true;
 
@@ -66,6 +68,7 @@ $(document).ready(function () {
         }
     });
     welcome();
+    getPointSettings();
     getOpenTicketData();
     getGroupData();
     getResolvedAndReopenedTicketData();
@@ -151,6 +154,22 @@ function tabClicker() {
     var selectedTabIndex = Math.floor((Math.random() * tabbedArray.length));
     var buttonToClick = tabbedArray[selectedTabIndex];
     $(buttonToClick).click();
+}
+
+function getPointSettings(){
+    getAjaxData(generateLink('pointSettings')).done(function(data){
+        calculatorPointSettings.p1 = data[0].critical_point_val;
+        calculatorPointSettings.p2 = data[0].high_point_val;
+        calculatorPointSettings.p3 = data[0].medium_point_val;
+        calculatorPointSettings.p4 = data[0].low_point_val;
+        calculatorPointSettings.inc = data[0].inc_point_val;
+        calculatorPointSettings.prob = data[0].problem_point_val;
+        calculatorPointSettings.serviceReq = data[0].servreq_point_val;
+        calculatorPointSettings.warningPercent = data[0].warning_percent;
+        calculatorPointSettings.penaltyPercent = data[0].penalty_percent;
+    }).fail(function(){
+        $.toaster({priority: 'danger', title: 'Points', message: 'Failed to retrieve point settings.'})
+    });
 }
 
 /* these warning messages have been replaced with toaster - http://www.jqueryscript.net/other/jQuery-Bootstrap-Based-Toast-Notification-Plugin-toaster.html
