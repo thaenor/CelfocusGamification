@@ -66,7 +66,6 @@ function sortTicketList(data){
         }
     }*/
     //midArray = midArray.clean();
-
     return p1Array.concat(p2Array,midArray,finalArr);
 }
 
@@ -129,14 +128,18 @@ function ticketPagination(tickets) {
         return;
     }
     $.each(recordsToShow, function (i, currentTicket) {
+        var escalationSolTime = 0;
+        if(currentTicket.escalation_solution_time != 0){
+            escalationSolTime = moment.unix(currentTicket.escalation_solution_time).format("YYYY/MMM/DD");
+        }
         if (currentTicket.priority == "1 Critical") {
-            $('#ticketList').append('<li class="list-group-item list-group-item-danger"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right">' + currentTicket.created_at + '</span> <span class="badge">' + currentTicket.percentage + '%</span> </li>');
+            $('#ticketList').append('<li class="list-group-item list-group-item-danger"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right hidden-xs"> &nbsp' + escalationSolTime + '&nbsp</span> <span class="badge hidden-xs">' + currentTicket.percentage + '%</span> </li>');
         } else if (currentTicket.priority == "2 High") {
-            $('#ticketList').append('<li class="list-group-item list-group-item-warning"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right">' + currentTicket.created_at + '</span> <span class="badge">' + currentTicket.percentage + '%</span> </li>');
+            $('#ticketList').append('<li class="list-group-item list-group-item-warning"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right hidden-xs">&nbsp' + escalationSolTime + '&nbsp</span> <span class="badge hidden-xs">' + currentTicket.percentage + '%</span> </li>');
         } else if (currentTicket.priority == "3 Medium") {
-            $('#ticketList').append('<li class="list-group-item list-group-item-info"> <a data-toggle="modal" data-target="#ticketModal"href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right">' + currentTicket.created_at + '</span> <span class="badge">' + currentTicket.percentage + '%</span> </li>');
+            $('#ticketList').append('<li class="list-group-item list-group-item-info"> <a data-toggle="modal" data-target="#ticketModal"href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right hidden-xs">&nbsp' + escalationSolTime + '&nbsp</span> <span class="badge hidden-xs">' + currentTicket.percentage + '%</span> </li>');
         } else {
-            $('#ticketList').append('<li class="list-group-item list-group-item-success"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right">' + currentTicket.created_at + '</span> <span class="badge">' + currentTicket.percentage + '%</span> </li>');
+            $('#ticketList').append('<li class="list-group-item list-group-item-success"> <a data-toggle="modal" data-target="#ticketModal" href="#' + currentTicket.id + '">' + currentTicket.title + '</a> <span class="pull-right hidden-xs">&nbsp' + escalationSolTime + '&nbsp</span> <span class="badge hidden-xs">' + currentTicket.percentage + '%</span> </li>');
         }
     });
 }
@@ -368,23 +371,27 @@ function displayTicketPercentage(percentage) {
 function renderTicketDetailsModal(ticketId) {
     var ticket = findTicket(_openTicketsData, parseInt(ticketId));
     var timeToSolveInHours = parseInt(ticket.sla_time) / 60;
+    var escalationSolTime = 0;
+    if(ticket.escalation_solution_time != 0){
+        escalationSolTime = moment.unix(ticket.escalation_solution_time).format("dddd, MMMM Do YYYY, h:mm:ss a");
+    }
     if (ticket != false) {
         $("#ticketInfo").empty().append('<ul class="list-group">' +
-            '<li class="list-group-item"> internal id: ' + ticket.id + '</li>' +
+            '<li class="list-group-item"> internal id: ' + ticket.tn + '</li>' +
             //'<li class="list-group-item"> tn: ' + ticket.tn + '</li>' +
-            //'<li class="list-group-item"> time: ' + moment.unix(ticket.escalation_solution_time).format("dddd, MMMM Do YYYY, h:mm:ss a") + '</li>' +
             '<li class="list-group-item"> title: ' + ticket.title + '</li>' +
             '<li class="list-group-item"> status: ' + ticket.state + '</li>' +
             '<li class="list-group-item"> <b> type: ' + ticket.type + '</b> </li>' +
             '<li class="list-group-item"> <b> priority: ' + ticket.priority + '</b> </li>' +
             '<li class="list-group-item"> <b> sla: ' + ticket.sla + ' </b> <span class="badge">' + displayTicketPercentage(ticket.percentage) + '%</span> </li>' +
             '<li class="list-group-item"> <b> assigned to: ' + ticket.user_id + ' </b> </li>' +
-            '<li class="list-group-item"> total time to solve: ' + timeToSolveInHours + 'h ( ' + ticket.sla_time + ' minutes)' +
-            ' </li>' +
+            //'<li class="list-group-item"> total time to solve: ' + timeToSolveInHours + 'h ( ' + ticket.sla_time + ' minutes)' +
+            //' </li>' +
             '<li class="list-group-item"> team: ' + ticket.assignedGroup_id + '</li>' +
             '<li class="list-group-item"> points: ' + ticket.points + '</li>' +
             '<li class="list-group-item"> created at: ' + ticket.created_at + '</li>' +
             '<li class="list-group-item"> updated at: ' + ticket.updated_at + '</li>' +
+            '<li class="list-group-item"> escalation solution time: ' + escalationSolTime + '</li>' +
             '<li class="list-group-item"> external ID: ' + ticket.external_id + '</li>' +
             '</ul>');
     } else {

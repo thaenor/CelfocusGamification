@@ -73,7 +73,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <!-- time travel -->
-                    <button class="btn btn-primary btn-danger btn-lg navbar-btn" type="button" data-toggle="modal" data-target="#TimeTravelModal">
+                    <button class="btn btn-primary btn-success btn-lg navbar-btn" type="button" data-toggle="modal" data-target="#TimeTravelModal">
                         Time travel
                     </button>
                 </li>
@@ -122,14 +122,14 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="pull-right hidden-xs">
+                        <!--<li class="pull-right hidden-xs">
                             <div class="noti-box">
                                 <span class="icon-box bg-color-red set-icon">
                                     <i class="glyphicon glyphicon-cog" data-toggle="modal"
                                        data-target="#settingsPointCalc"></i>
                                 </span>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -137,8 +137,8 @@
                 <li class="active"><a id="ticket-tab" data-toggle="tab" href="#ticketDisplayScreen">Tickets</a></li>
                 <li class=""><a data-toggle="tab" href="#rewards">Rewards</a></li>
                 <li class=""><a id="newsfeed-tab" data-toggle="tab" href="#newsfeed">Newsfeed</a></li>
-                <li class="disabled"><a id="hofteams-tab" data-toggle="tab" href="#HoFleaderboard">Team's Hall
-                        of Fame</a></li>
+                <!--<li class="disabled"><a id="hofteams-tab" data-toggle="tab" href="#HoFleaderboard">Team's Hall
+                        of Fame</a></li>-->
                 <li class=""><a id="player-leaderboard-tab" data-toggle="tab" href="#Pleaderboard">Player Leaderboard</a></li>
                 <li class=""><a id="team-leaderboard-tab" data-toggle="tab" href="#Tleaderboard">Team
                         Leaderboard</a></li>
