@@ -107,7 +107,7 @@ $(document).ajaxStop(function () {
     $('#ticketNumber').empty().append(lenghtOfOpenTicketsArray);
     _maxPageOpenTickets = Math.ceil(lenghtOfOpenTicketsArray / _recPerPage);
     _maxPagePlayerLeaderboard = Math.ceil(_groupJson.length / _recPerPage);
-    drawMorrisDonnutChart();
+    //drawMorrisDonnutChart();
 });
 
 /*function getChallenges(){
@@ -149,8 +149,7 @@ function welcome() {
 }
 
 function tabClicker() {
-    var tabbedArray = ["#ticket-tab", /*"#newsfeed-tab",*/ /*"#groupLeaderboard-tab",*/ "#player-leaderboard-tab",
-        "#graph-tab", "#team-leaderboard-tab"];
+    var tabbedArray = ["#tab1", "#tab2", "#tab3", "#tab4"];
     var selectedTabIndex = Math.floor((Math.random() * tabbedArray.length));
     var buttonToClick = tabbedArray[selectedTabIndex];
     $(buttonToClick).click();
