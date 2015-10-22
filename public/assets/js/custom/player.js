@@ -34,7 +34,8 @@ function renderMorrisBar_player(dataArray) {
         data: dataArray,
         xkey: 'name',
         ykeys: ['point'],
-        labels: ['points']
+        labels: ['points'],
+        barColors: ['#00203C','#002074','#4D7692']
     });
 }
 
@@ -48,8 +49,13 @@ function showPlayerLeaderBoard(array) {
     var graphData = [];
     $.each(orderedPlayers, function (index, el) {
         //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
-        $('#playerLeaderboard').append('<tr> <td class="col-md-1 col-lg-1 col-xm-1 warning">' + (index + 1) + '</td> <td class="info"> <a href="#"' +
-            '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="warning">' + orderedPlayers[index][1] + '</td> </tr>');
+        if((index%2) == 0){
+            $('#playerLeaderboard').append('<tr> <td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
+        }else
+            $('#playerLeaderboard').append('<tr class="greyME"> <td class="col-md-1 col-lg-1 col-xm-1">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
+
         var obj = {name: orderedPlayers[index][0], point: orderedPlayers[index][1]};
         graphData.push(obj);
     });

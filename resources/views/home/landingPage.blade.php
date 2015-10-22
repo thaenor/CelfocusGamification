@@ -65,7 +65,7 @@
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2>Working title</h2>
+    <h2 class="redMe">Working title</h2>
     <div>
         <div>
             <ul class="list-inline">
@@ -104,13 +104,13 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1">Top
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
                     Ranks</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                       data-toggle="tab" id="tab2">Challenges</a></li>
+                                       data-toggle="tab" id="tab2" class="redMe">Challenges</a></li>
             <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
-                                       data-toggle="tab" id="tab3">Newsfeed</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4">Open
+                                       data-toggle="tab" id="tab3" class="redMe">Newsfeed</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4" class="redMe">Open
                     Tickets</a></li>
         </ul>
 
@@ -123,7 +123,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
                         <!-- player ranking -->
-                        <h4>Player ranking</h4>
+                        <h4 class="redMe" >Player ranking</h4>
 
                         <div class="table-responsive">
                             <table class="table">
@@ -144,7 +144,7 @@
 
                         <!-- team ranking -->
                         <div id="table-teamleaderboard" class="table-responsive">
-                            <h4>Player ranking</h4>
+                            <h4 class="redMe">Team ranking</h4>
 
                             <div class="table-responsive">
                                 <table class="table">
@@ -169,8 +169,8 @@
                     <!-- Morris chart -->
                     <div class="col-md-6 col-sm-12 col-xs-12 ">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Player leaderboard graph
+                            <div class="panel-heading ">
+                                <label class="redMe">Player leaderboard graph</label>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart"></div>
@@ -184,8 +184,8 @@
                     <section>
                         <div class="col-md-6 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Team leaderboard Graph
+                                <div class="panel-heading ">
+                                    <label class="redMe">Team leaderboard Graph</label>
                                 </div>
                                 <div class="panel-body">
                                     <div id="morris-Teambar-chart"></div>
@@ -204,7 +204,7 @@
             <div role="tabpanel" class="tab-pane" id="profile" ng-app="todoApp">
 
                 <!--------------------------------------------------------------------------------------------->
-                <h2>Challenges</h2>
+                <h4 class="redMe">Challenges</h4>
 
                 <div ng-controller="TodoListController as todoList">
                     <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>

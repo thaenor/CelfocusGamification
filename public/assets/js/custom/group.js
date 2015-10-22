@@ -51,7 +51,8 @@ function renderMorrisBar_Team(dataArray) {
         data: dataArray,
         xkey: 'name',
         ykeys: ['point'],
-        labels: ['points']
+        labels: ['points'],
+        barColors: ['#00203C','#002074','#4D7692']
     });
 }
 
@@ -61,10 +62,17 @@ function reDisplayGroupLeaderBoard(array) {
     var orderedTeams = sortByPoints(array);
     var graphData = [];
     $.each(orderedTeams, function (index, el) {
-        $('#teamLeaderboard').append('<tr> ' +
-            '<td class="col-md-1 col-lg-1 col-xm-1 warning">' + (index + 1) + '</td> ' +
-            '<td class="success"> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
-            '<td class="info">' + el[1] + '</td> </tr>');
+        if((index%2) == 0) {
+            $('#teamLeaderboard').append('<tr> ' +
+                '<td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
+                '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
+                '<td class="">' + el[1] + '</td> </tr>');
+        }else{
+            $('#teamLeaderboard').append('<tr class="greyME"> ' +
+                '<td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
+                '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
+                '<td class="">' + el[1] + '</td> </tr>');
+        }
         var obj = {name: el[0], point: el[1]};
         graphData.push(obj);
     });

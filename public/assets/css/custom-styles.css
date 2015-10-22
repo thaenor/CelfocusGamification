@@ -7,6 +7,15 @@ http://creativecommons.org/licenses/by/3.0/
   width:25%; /* you can use % */
   height: auto;
 }
+
+.redMe{
+    color: #e74c3c;
+}
+
+.greyME{
+    background-color: #f4f0ee;
+}
+
 /*.btn-danger {
     background: #9C2AA0;
     color: #ffffff;
