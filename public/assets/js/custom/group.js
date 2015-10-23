@@ -62,6 +62,7 @@ function reDisplayGroupLeaderBoard(array) {
     var orderedTeams = sortByPoints(array);
     var graphData = [];
     $.each(orderedTeams, function (index, el) {
+        if(index === 10){ renderMorrisBar_Team(graphData); return false;}
         if((index%2) == 0) {
             $('#teamLeaderboard').append('<tr> ' +
                 '<td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +

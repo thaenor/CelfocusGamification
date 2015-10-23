@@ -48,6 +48,7 @@ function showPlayerLeaderBoard(array) {
     var orderedPlayers = sortByPoints(array);
     var graphData = [];
     $.each(orderedPlayers, function (index, el) {
+        if(index === 10){ renderMorrisBar_Team(graphData); return false;}
         //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
         if((index%2) == 0){
             $('#playerLeaderboard').append('<tr> <td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +

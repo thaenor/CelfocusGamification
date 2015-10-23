@@ -73,7 +73,7 @@
                         <label id="welcome"></label> Tickets between <b><label id="startTimeLabel" class="well"></label></b>
                         and <b><label id="endTimeLabel" class="well"></label></b>
                         <!-- time travel -->
-                        <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#TimeTravelModal">Change timespan</button>
+                        <button class="btn btn-primary btn-lg Mybtn-danger" type="button" data-toggle="modal" data-target="#TimeTravelModal">Change timespan</button>
                     </h4></li>
                 <!--<li class="pull-right hidden-xs">
                     <div class="noti-box">
