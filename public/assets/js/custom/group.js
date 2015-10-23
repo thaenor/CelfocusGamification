@@ -52,7 +52,9 @@ function renderMorrisBar_Team(dataArray) {
         xkey: 'name',
         ykeys: ['point'],
         labels: ['points'],
-        barColors: ['#00203C','#002074','#4D7692']
+        barColors: ['#00203C','#002074','#4D7692'],
+        resize: true,
+        gridTextColor: '#8C1213'
     });
 }
 

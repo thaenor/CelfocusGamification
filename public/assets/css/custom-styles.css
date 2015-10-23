@@ -13,21 +13,21 @@ http://creativecommons.org/licenses/by/3.0/
 }
 
 .greyME{
-    background-color: #f4f0ee;
+    background-color: #D5D1CF;
 }
 
 .Mybtn-danger {
-    background: rgb(226,9,25);
+    background: rgb(105,99,97);
     border: none;
 }
 
 .Mybtn-danger:hover{
-    background: rgb(140,18,19);
+    background: rgb(213,209,207);
     border: none;
 }
 
 .Mybtn-danger:focus{
-    background: rgb(184,14,24);
+    background: rgb(27,19,20);
     border: none;
 }
 

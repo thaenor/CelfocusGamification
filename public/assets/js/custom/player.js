@@ -35,7 +35,9 @@ function renderMorrisBar_player(dataArray) {
         xkey: 'name',
         ykeys: ['point'],
         labels: ['points'],
-        barColors: ['#00203C','#002074','#4D7692']
+        barColors: ['#00203C','#002074','#4D7692'],
+        resize: true,
+        gridTextColor: '#8C1213'
     });
 }
 
@@ -61,6 +63,25 @@ function showPlayerLeaderBoard(array) {
         graphData.push(obj);
     });
     renderMorrisBar_player(graphData);
+
+    $("#morris-Top3-chart").empty();
+    Morris.Bar({
+        element: 'morris-Top3-chart',
+        data: [
+            { name: orderedPlayers[1][0], point: orderedPlayers[1][1]},
+            { name: orderedPlayers[0][0], point: orderedPlayers[0][1]},
+            { name: orderedPlayers[2][0], point: orderedPlayers[2][1]},
+        ],
+        xkey: 'name',
+        ykeys: ['point'],
+        labels: ['points'],
+        barColors: ['#00203C','#002074','#4D7692'],
+        axes: true,
+        grid: false,
+        resize: true,
+        hideHover: 'always',
+        gridTextColor: '#8C1213'
+    });
 }
 
 function sortByPoints(array) {

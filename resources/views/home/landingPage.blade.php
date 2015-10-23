@@ -68,37 +68,25 @@
     <h2 class="redMe">Working title</h2>
     <div>
         <div>
-            <ul class="list-inline">
-                <li><h4>
-                        <label id="welcome"></label> Tickets between <b><label id="startTimeLabel" class="well"></label></b>
-                        and <b><label id="endTimeLabel" class="well"></label></b>
-                        <!-- time travel -->
-                        <button class="btn btn-primary btn-lg Mybtn-danger" type="button" data-toggle="modal" data-target="#TimeTravelModal">Change timespan</button>
-                    </h4></li>
-                <!--<li class="pull-right hidden-xs">
-                    <div class="noti-box">
-                        <span class="icon-box bg-color-red set-icon">
-                        <i class="glyphicon glyphicon-bell"></i>
-                        </span>
-                        <div class="text-box text-center">
-                            <label id="ticketNumber" class="main-text"></label>
-                        </div>
-                    </div>
-                </li>
-                <li class="pull-right hidden-xs">
-                    <div class="noti-box">
-                        <span class="icon-box bg-color-red set-icon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        <div class="text-box text-center">
-                            <label id="playersInLeague" class="main-text"></label>
-                        </div>
-                    </div>
-                </li>-->
-            </ul>
+            <h4>
+                <label id="welcome"></label> Tickets between <b><label id="startTimeLabel" class="well well-sm"></label></b> and <b><label id="endTimeLabel" class="well well-sm"></label></b>
+                <!-- time travel -->
+                <button class="btn btn-primary btn-lg Mybtn-danger pull-right" type="button" data-toggle="modal" data-target="#TimeTravelModal">Adjust dates</button>
+            </h4>
         </div>
     </div>
 
+    <!-- top 3 leaderboard -->
+    <div>
+        <div class="">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-md-offset-2 col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div id="morris-Top3-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end top 3 leaderboard -->
 
     <div>
 

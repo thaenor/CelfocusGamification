@@ -187,7 +187,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       dateFormat: null,
       axes: true,
       grid: true,
-      gridLineColor: '#aaa',
+      gridLineColor: '#8C1213', //'#aaa',
       gridStrokeWidth: 0.5,
       gridTextColor: '#888',
       gridTextSize: 12,
