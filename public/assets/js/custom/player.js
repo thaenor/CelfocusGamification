@@ -4,11 +4,14 @@
  * Player related functions
  */
 
-function renderPlayerLeaderBoard() {
+function renderPlayerLeaderBoard(receivedData) {
     var playerArray = {}; //Dictionary like array, will contain [player name][player's points]... etc
     var playerCounter = 0;
-
-    $.each(_resolvedTicketsData, function (index, currentTicket) {
+    if(receivedData.length < 0){
+      $('#playerLeaderboard').empty().append('no players received');
+      return false;
+    }
+    $.each(receivedData, function (index, currentTicket) {
         if (playerArray[currentTicket.user_id] === undefined) {
             playerArray[currentTicket.user_id] = 0;
             playerCounter++;
@@ -64,24 +67,30 @@ function showPlayerLeaderBoard(array) {
     });
     renderMorrisBar_player(graphData);
 
-    $("#morris-Top3-chart").empty();
-    Morris.Bar({
-        element: 'morris-Top3-chart',
-        data: [
-            { name: orderedPlayers[1][0], point: orderedPlayers[1][1]},
-            { name: orderedPlayers[0][0], point: orderedPlayers[0][1]},
-            { name: orderedPlayers[2][0], point: orderedPlayers[2][1]},
-        ],
-        xkey: 'name',
-        ykeys: ['point'],
-        labels: ['points'],
-        barColors: ['#00203C','#002074','#4D7692'],
-        axes: true,
-        grid: false,
-        resize: true,
-        hideHover: 'always',
-        gridTextColor: '#8C1213'
-    });
+    if(orderedPlayers.length > 3){
+    	$("#morris-Top3-chart").empty();
+	    Morris.Bar({
+	        element: 'morris-Top3-chart',
+	        data: [
+	            { name: orderedPlayers[1][0], point: orderedPlayers[1][1]},
+	            { name: orderedPlayers[0][0], point: orderedPlayers[0][1]},
+	            { name: orderedPlayers[2][0], point: orderedPlayers[2][1]},
+	        ],
+	        xkey: 'name',
+	        ykeys: ['point'],
+	        labels: ['points'],
+	        barColors: ['#00203C','#002074','#4D7692'],
+	        axes: true,
+	        grid: false,
+	        resize: true,
+	        hideHover: 'always',
+	        gridTextColor: '#8C1213'
+	    });
+    }
+    else{
+    	$("#morris-Top3-chart").empty().append('no top 3 players to display');
+    }
+
 }
 
 function sortByPoints(array) {

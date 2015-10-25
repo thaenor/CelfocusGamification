@@ -30,6 +30,10 @@ function removeEntriesWithZero(array) {
 }
 
 function renderGroupLeaderBoard(data) {
+    if(data.length < 0){
+      $('#teamLeaderboard').empty().append('no team information received');
+      return false;
+    }
     var teamsArray = {}; //Dictionary like array, will contain [team name][team's points]... etc
     $.each(data, function (index, currentTicket) {
         if (teamsArray[currentTicket.assignedGroup_id] == null) {
@@ -63,6 +67,7 @@ function reDisplayGroupLeaderBoard(array) {
     //$('.hidden-sm').remove();
     var orderedTeams = sortByPoints(array);
     var graphData = [];
+
     $.each(orderedTeams, function (index, el) {
         if(index === 10){ renderMorrisBar_Team(graphData); return false;}
         if((index%2) == 0) {
