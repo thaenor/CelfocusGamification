@@ -39,11 +39,11 @@
 </div>
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid pull-right">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand dropdown-menu-right" href="#">
-                <img alt="brand" id="logo" src="assets/logo.png"/>
+                <img class="pull-right" alt="brand" id="logo" src="assets/logo.png"/>
             </a>
             <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -65,13 +65,13 @@
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2 class="redMe">Working title</h2>
+    <h2 class="redMe pu">Game of tickets</h2>
     <div>
         <div>
             <h4>
                 <label id="welcome"></label> Tickets between <b><label id="startTimeLabel" class="well well-sm"></label></b> and <b><label id="endTimeLabel" class="well well-sm"></label></b>
                 <!-- time travel -->
-                <button class="btn btn-primary btn-lg Mybtn-danger pull-right" type="button" data-toggle="modal" data-target="#TimeTravelModal">Adjust dates</button>
+                <button class="btn btn-primary btn-sm Mybtn-danger" type="button" data-toggle="modal" data-target="#TimeTravelModal">Adjust dates</button>
             </h4>
         </div>
     </div>
@@ -81,6 +81,11 @@
         <div class="">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="col-md-offset-2 col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class='img-container'>
+                    <img src="assets\podium.jpg" alt="podium">
+                    <div class='img-text' id="player1">player 1</div>
+                    <!--<div class='img-text' id="player2">player 2</div>
+                    <div class='img-text' id="player3">player 3</div>-->
                     <div id="morris-Top3-chart"></div>
                 </div>
             </div>
@@ -88,10 +93,10 @@
     </div>
     <!-- end top 3 leaderboard -->
 
-    <div>
+    <div class="tabbable">
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-pills nav-stacked col-md-1 col-xs-6" role="tablist">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
                     Ranks</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
@@ -103,7 +108,7 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content col-md-11">
             <div role="tabpanel" class="tab-pane active" id="home">
 
                 <!--------------------------------------------------------------------------------------------->
@@ -184,7 +189,6 @@
                     <!-- END Morris chart -->
 
                 </div>
-                <div class="clearfix"></div>
                 <!--------------------------------------------------------------------------------------------->
 
 
@@ -428,7 +432,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="TimeTravelModalLabel">Time Travel</h4>
+                <h4 class="modal-title" id="TimeTravelModalLabel">Adjust dates</h4>
                 <h5>Reload the dashboard to display data from a different time. </h5>
             </div>
             <div class="modal-body">
@@ -436,7 +440,7 @@
                     <button id="setTimeWeek" type='button' class='btn btn-lg btn-default '>last week</button>
                     <button id="setTimeMonth" type='button' class='btn btn-lg btn-default '>last month</button>
                 </div>
-                <p class="text-primary">Time travel the dashboard for this interval&hellip;</p>
+                <p class="text-primary">Adjust the dashboard's dates for this interval&hellip;</p>
 
                 <p class="text-primary">Start Date:
                     <input type="text" id="startDatePicker">
@@ -447,8 +451,8 @@
                 </p>
                 <button id="timeTravelTrigger" type="button" class="btn btn-danger">GO!</button>
                 <div id='loader'><img src="assets/loader.gif" class="text-center"/></div>
-                <label class="text-secundary text-muted">After clicking 'Go' you can close the window, we'll do the work
-                    for you in the background (just please be patient)</label>
+                <label class="text-secundary"><h6><small>After clicking 'Go' you can close the window, we'll do the work
+                    for you in the background (just please be patient)</small></h6></label>
 
             </div>
             <div class="modal-footer">

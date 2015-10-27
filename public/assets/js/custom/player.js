@@ -40,7 +40,7 @@ function renderMorrisBar_player(dataArray) {
         labels: ['points'],
         barColors: ['#00203C','#002074','#4D7692'],
         resize: true,
-        gridTextColor: '#8C1213'
+        gridTextColor: '#696361'
     });
 }
 
@@ -84,7 +84,7 @@ function showPlayerLeaderBoard(array) {
 	        grid: false,
 	        resize: true,
 	        hideHover: 'always',
-	        gridTextColor: '#8C1213'
+	        gridTextColor: '#696361'
 	    });
     }
     else{
