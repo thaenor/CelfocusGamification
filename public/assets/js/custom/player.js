@@ -52,51 +52,45 @@ function showPlayerLeaderBoard(array) {
     $('#playerLeaderboard').empty();
     var orderedPlayers = sortByPoints(array);
     var graphData = [];
+/*
     $.each(orderedPlayers, function (index, el) {
-        if(index === 10){ renderMorrisBar_Team(graphData); return false;}
+        if(index === 10){ renderMorrisBar_player(graphData); return false;}
         //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
         if((index%2) == 0){
-            $('#playerLeaderboard').append('<tr> <td class="col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+            $('#playerLeaderboard').append('<tr> <td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +
                 '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
         }else
-            $('#playerLeaderboard').append('<tr class="greyME"> <td class="col-md-1 col-lg-1 col-xm-1">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+            $('#playerLeaderboard').append('<tr class="greyME"> <td class="lead col-md-1 col-lg-1 col-xm-1">' + (index + 1) + '</td> <td class=""> <a href="#"' +
                 '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
 
         var obj = {name: orderedPlayers[index][0], point: orderedPlayers[index][1]};
         graphData.push(obj);
     });
-    renderMorrisBar_player(graphData);
-
+*/
+    //filling the top three podium
     if(orderedPlayers.length > 3){
-    	$("#morris-Top3-chart").empty();
-	    Morris.Bar({
-	        element: 'morris-Top3-chart',
-	        data: [
-	            { name: orderedPlayers[1][0], point: orderedPlayers[1][1]},
-	            { name: orderedPlayers[0][0], point: orderedPlayers[0][1]},
-	            { name: orderedPlayers[2][0], point: orderedPlayers[2][1]},
-	        ],
-	        xkey: 'name',
-	        ykeys: ['point'],
-	        labels: ['points'],
-	        barColors: ['#00203C','#002074','#4D7692'],
-	        axes: true,
-	        grid: false,
-	        resize: true,
-	        hideHover: 'always',
-	        gridTextColor: '#696361'
-	    });
+        $("#topPlayer1").empty().append(orderedPlayers[0][0]);
+        $("#topPlayer2").empty().append(orderedPlayers[1][0]);
+        $("#topPlayer3").empty().append(orderedPlayers[2][0]);
     }
-    else{
-    	$("#morris-Top3-chart").empty().append('no top 3 players to display');
-    }
+    for(var i=3; i< 13 && i<orderedPlayers.length-1; i++){
+        if((i%2) == 0){
+            $('#playerLeaderboard').append('<tr> <td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (i + 1) + '</td> <td class="col-md-3"> <a href="#"' +
+                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[i][0] + '</a></td>' + '<td class="col-md-2">' + orderedPlayers[i][1] + '</td> </tr>');
+        }else
+            $('#playerLeaderboard').append('<tr class="greyME"> <td class="lead col-md-1 col-lg-1 col-xm-1">' + (i + 1) + '</td> <td class="col-md-3"> <a href="#"' +
+                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[i][0] + '</a></td>' + '<td class="col-md-2">' + orderedPlayers[i][1] + '</td> </tr>');
 
+        //var obj = {name: orderedPlayers[i][0], point: orderedPlayers[i][1]};
+        //graphData.push(obj);
+    }
+    //renderMorrisBar_player(graphData);
 }
 
 function sortByPoints(array) {
     var sortable = [];
     for (var player in array) {
-        sortable.push([player, array[player]])
+        sortable.push([player, array[player]]);
         sortable.sort(function (a, b) {
             return b[1] - a[1]
         })

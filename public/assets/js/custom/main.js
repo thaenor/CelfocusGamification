@@ -107,7 +107,9 @@ $(document).ajaxStop(function () {
     $('#ticketNumber').empty().append(lenghtOfOpenTicketsArray);
     _maxPageOpenTickets = Math.ceil(lenghtOfOpenTicketsArray / _recPerPage);
     _maxPagePlayerLeaderboard = Math.ceil(_groupJson.length / _recPerPage);
-    //drawMorrisDonnutChart();
+    drawMorrisDonnutChart();
+    drawGraphTicketsPriority();
+    drawGraphTicketsType();
 });
 
 /*function getChallenges(){

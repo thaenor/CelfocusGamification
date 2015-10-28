@@ -181,13 +181,88 @@ function findTicket(ticketArray, ticketId) {
 
 
 function drawMorrisDonnutChart() {
+    $("#morris-donut-chart").empty();
     Morris.Donut({
-        element: 'donut-example',
+        element: 'morris-donut-chart',
         data: [
             {label: "Open tickets", value: _openTicketsData.length},
             {label: "Resolved tickets", value: _resolvedTicketsData.length},
             {label: "In progress", value: _openTicketsData.length}
         ]
+    });
+}
+
+function drawGraphTicketsPriority(){
+    var dataToRender = [
+        { priority: "p1", quant:0 },
+        { priority: "p2", quant:0 },
+        { priority: "p3", quant:0 },
+        { priority: "p4", quant:0 }
+    ];
+    $.each(_openTicketsData, function(index, el){
+        switch (el.priority) {
+            case '1 Critical':
+                dataToRender[0].quant++;
+                break;
+            case '2 High':
+                dataToRender[1].quant++;
+                break;
+            case '3 Medium':
+                dataToRender[2].quant++;
+                break;
+            case '4 Low':
+                dataToRender[3].quant++;
+                break;
+            default:
+                break;
+        }
+    });
+    $("#morris-priority-quant-chart").empty();
+    Morris.Bar({
+        element: 'morris-priority-quant-chart',
+        data: dataToRender,
+        xkey: 'priority',
+        ykeys: ['quant'],
+        labels: ['quantity'],
+        barColors: ['#00203C','#002074','#4D7692'],
+        resize: true,
+        gridTextColor: '#696361',
+        hideHover: 'auto'
+    });
+}
+
+function drawGraphTicketsType(){
+    var dataToRender = [
+        { type: "incident", qtd: 0 },
+        { type: "problem", qtd: 0},
+        { type: "servRequest", qtd:0 }
+    ];
+    $.each(_openTicketsData, function(index, el){
+        switch (el.type) {
+            case "Incident":
+                dataToRender[0].qtd++;
+                break;
+            case "Service Request":
+                dataToRender[1].qtd++;
+                break;
+            case "Problem":
+                dataToRender[2].qtd++;
+                break;
+            default:
+                break;
+        }
+    });
+    $("#morris-type-quant-chart").empty();
+    Morris.Bar({
+        element: 'morris-type-quant-chart',
+        data: dataToRender,
+        xkey: 'type',
+        ykeys: ['qtd'],
+        labels: ['quantity'],
+        barColors: ['#00203C','#002074','#4D7692'],
+        resize: true,
+        gridTextColor: '#696361',
+        hideHover: 'auto'
     });
 }
 

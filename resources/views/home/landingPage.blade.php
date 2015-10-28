@@ -65,7 +65,7 @@
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2 class="redMe pu">Game of tickets</h2>
+    <h2 class="redMe">Game of tickets</h2>
     <div>
         <div>
             <h4>
@@ -80,14 +80,16 @@
     <div>
         <div class="">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="col-md-offset-2 col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                    <div class='img-container'>
-                    <img src="assets\podium.jpg" alt="podium">
-                    <div class='img-text' id="player1">player 1</div>
-                    <!--<div class='img-text' id="player2">player 2</div>
-                    <div class='img-text' id="player3">player 3</div>-->
-                    <div id="morris-Top3-chart"></div>
-                </div>
+              <div class="col-md-offset-2 col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <ul class="list-inline">
+                  <li id="topPlayer1" class="lead col-md-4 text-center"></li>
+                  <li id="topPlayer2" class="lead col-md-4 text-center"></li>
+                  <li id="topPlayer3" class="lead col-md-4 text-center"></li>
+                </ul>
+              </div>
+              <div class="col-md-offset-2 col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                  <img src="assets\podium.jpg" alt="..." class="img-responsive"/>
+              </div>
             </div>
         </div>
     </div>
@@ -96,33 +98,34 @@
     <div class="tabbable">
 
         <!-- Nav tabs -->
-        <ul class="nav nav-pills nav-stacked col-md-1 col-xs-6" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
-                    Ranks</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                       data-toggle="tab" id="tab2" class="redMe">Challenges</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
-                                       data-toggle="tab" id="tab3" class="redMe">Newsfeed</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4" class="redMe">Open
-                    Tickets</a></li>
-        </ul>
-
+        <div class="col-md-1 col-xs-6 well well-sm">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
+                        Ranks</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                           data-toggle="tab" id="tab2" class="redMe">Challenges</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
+                                           data-toggle="tab" id="tab3" class="redMe">Newsfeed</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4" class="redMe">Open
+                        Tickets</a></li>
+            </ul>
+        </div>
         <!-- Tab panes -->
         <div class="tab-content col-md-11">
             <div role="tabpanel" class="tab-pane active" id="home">
 
                 <!--------------------------------------------------------------------------------------------->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="">
+                    <div class="col-md-4 col-lg-5">
 
                         <!-- player ranking -->
-                        <h4 class="redMe" >Player ranking</h4>
+                        <h4 class="redMe text-center" >Top 10 - Player ranking</h4>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Rank</th>
+                                    <th>Ranking</th>
                                     <th>Name</th>
                                     <th>Points</th>
                                 </tr>
@@ -133,17 +136,17 @@
                         <!-- player ranking -->
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-md-offset-1 col-md-4 col-lg-5">
 
                         <!-- team ranking -->
                         <div id="table-teamleaderboard" class="table-responsive">
-                            <h4 class="redMe">Team ranking</h4>
+                            <h4 class="redMe text-center">Top 10 - Team ranking</h4>
 
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>Rank</th>
+                                        <th>Ranking</th>
                                         <th>Name</th>
                                         <th>Points</th>
                                     </tr>
@@ -163,10 +166,10 @@
                     <div class="col-md-6 col-sm-12 col-xs-12 ">
                         <div class="panel panel-default">
                             <div class="panel-heading ">
-                                <label class="redMe">Player leaderboard graph</label>
+                                <label class="redMe text-center">Tickets per status</label>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
+                                <div id="morris-donut-chart"></div>
                             </div>
                         </div>
                     </div>
@@ -178,10 +181,25 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
-                                    <label class="redMe">Team leaderboard Graph</label>
+                                    <label class="redMe text-center">Ticket volume per priority</label>
                                 </div>
                                 <div class="panel-body">
-                                    <div id="morris-Teambar-chart"></div>
+                                    <div id="morris-priority-quant-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- END Morris chart -->
+
+                    <!-- Morris chart -->
+                    <section>
+                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <label class="redMe text-center">Ticket volume per type</label>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="morris-type-quant-chart"></div>
                                 </div>
                             </div>
                         </div>
