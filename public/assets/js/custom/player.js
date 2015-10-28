@@ -7,9 +7,9 @@
 function renderPlayerLeaderBoard(receivedData) {
     var playerArray = {}; //Dictionary like array, will contain [player name][player's points]... etc
     var playerCounter = 0;
-    if(receivedData.length < 0){
-      $('#playerLeaderboard').empty().append('no players received');
-      return false;
+    if (receivedData.length < 0) {
+        $('#playerLeaderboard').empty().append('no players received');
+        return false;
     }
     $.each(receivedData, function (index, currentTicket) {
         if (playerArray[currentTicket.user_id] === undefined) {
@@ -30,19 +30,19 @@ function renderPlayerLeaderBoard(receivedData) {
     });
 }
 
-function renderMorrisBar_player(dataArray) {
-    $("#morris-bar-chart").empty();
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: dataArray,
-        xkey: 'name',
-        ykeys: ['point'],
-        labels: ['points'],
-        barColors: ['#00203C','#002074','#4D7692'],
-        resize: true,
-        gridTextColor: '#696361'
-    });
-}
+/*function renderMorrisBar_player(dataArray) {
+ $("#morris-bar-chart").empty();
+ Morris.Bar({
+ element: 'morris-bar-chart',
+ data: dataArray,
+ xkey: 'name',
+ ykeys: ['point'],
+ labels: ['points'],
+ barColors: ['#00203C','#002074','#4D7692'],
+ resize: true,
+ gridTextColor: '#696361'
+ });
+ }*/
 
 function countPlayers(size) {
     $('#playersInLeague').empty().append(size);
@@ -51,39 +51,22 @@ function countPlayers(size) {
 function showPlayerLeaderBoard(array) {
     $('#playerLeaderboard').empty();
     var orderedPlayers = sortByPoints(array);
-    var graphData = [];
-/*
-    $.each(orderedPlayers, function (index, el) {
-        if(index === 10){ renderMorrisBar_player(graphData); return false;}
-        //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
-        if((index%2) == 0){
-            $('#playerLeaderboard').append('<tr> <td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +
-                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
-        }else
-            $('#playerLeaderboard').append('<tr class="greyME"> <td class="lead col-md-1 col-lg-1 col-xm-1">' + (index + 1) + '</td> <td class=""> <a href="#"' +
-                '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
-
-        var obj = {name: orderedPlayers[index][0], point: orderedPlayers[index][1]};
-        graphData.push(obj);
-    });
-*/
+    _virtualRankingPlayer = orderedPlayers;
     //filling the top three podium
-    if(orderedPlayers.length > 3){
+    if (orderedPlayers.length > 3) {
         $("#topPlayer1").empty().append(orderedPlayers[0][0]);
         $("#topPlayer2").empty().append(orderedPlayers[1][0]);
         $("#topPlayer3").empty().append(orderedPlayers[2][0]);
     }
-    for(var i=3; i< 13 && i<orderedPlayers.length-1; i++){
-        if((i%2) == 0){
+    for (var i = 3; i < 13 && i < orderedPlayers.length - 1; i++) {
+        if ((i % 2) == 0) {
             $('#playerLeaderboard').append('<tr> <td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (i + 1) + '</td> <td class="col-md-3"> <a href="#"' +
                 '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[i][0] + '</a></td>' + '<td class="col-md-2">' + orderedPlayers[i][1] + '</td> </tr>');
-        }else
+        } else
             $('#playerLeaderboard').append('<tr class="greyME"> <td class="lead col-md-1 col-lg-1 col-xm-1">' + (i + 1) + '</td> <td class="col-md-3"> <a href="#"' +
                 '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[i][0] + '</a></td>' + '<td class="col-md-2">' + orderedPlayers[i][1] + '</td> </tr>');
-
-        //var obj = {name: orderedPlayers[i][0], point: orderedPlayers[i][1]};
-        //graphData.push(obj);
     }
+    $("#see-more-placeholder-player").append('<a id="morePlayers">See more...</a>');
     //renderMorrisBar_player(graphData);
 }
 

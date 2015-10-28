@@ -146,6 +146,8 @@ function renderEvents() {
                 });
             });
             getPointSettings();
+            $("#see-more-placeholder-player").empty();
+            $("#see-more-placeholder-team").empty();
         } else {
             alert('You set the "End Date" lower than the start date, or the start date is in the future. Please make sure the dates are correct');
         }
@@ -246,5 +248,40 @@ function renderEvents() {
         event.preventDefault();
         $("#teamDetails").empty().append($(this).text() + '\'s information');
         renderTeamDetailModal($(this).text());
-    })
+    });
+
+    /** event handling to show all leaderboard */
+    $("#see-more-placeholder-team").on("click", "a", function (event) {
+        event.preventDefault();
+        $('#teamLeaderboard').empty();
+        var orderedTeams = _virtualRankingTeam;
+        $.each(orderedTeams, function (index, el) {
+            if ((index % 2) == 0) {
+                $('#teamLeaderboard').append('<tr> ' +
+                    '<td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
+                    '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
+                    '<td class="">' + el[1] + '</td> </tr>');
+            } else {
+                $('#teamLeaderboard').append('<tr class="greyME"> ' +
+                    '<td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
+                    '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
+                    '<td class="">' + el[1] + '</td> </tr>');
+            }
+        });
+    });
+
+    $("#see-more-placeholder-player").on("click", "a", function (event) {
+        event.preventDefault();
+        $('#playerLeaderboard').empty();
+        var orderedPlayers = _virtualRankingPlayer;
+        $.each(orderedPlayers, function (index, el) {
+            //$('#playerLeaderboard').append(index + ' ' + el + '<hr/>');
+            if ((index % 2) == 0) {
+                $('#playerLeaderboard').append('<tr> <td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+                    '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
+            } else
+                $('#playerLeaderboard').append('<tr class="greyME"> <td class="lead col-md-1 col-lg-1 col-xm-1">' + (index + 1) + '</td> <td class=""> <a href="#"' +
+                    '  data-toggle="modal" data-target="#playerInfo">' + orderedPlayers[index][0] + '</a></td>' + '<td class="">' + orderedPlayers[index][1] + '</td> </tr>');
+        });
+    });
 }

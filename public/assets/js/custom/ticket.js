@@ -199,7 +199,7 @@ function drawGraphTicketsPriority(){
         { priority: "p3", quant:0 },
         { priority: "p4", quant:0 }
     ];
-    $.each(_openTicketsData, function(index, el){
+    $.each(_resolvedTicketsData, function(index, el){
         switch (el.priority) {
             case '1 Critical':
                 dataToRender[0].quant++;
@@ -237,7 +237,7 @@ function drawGraphTicketsType(){
         { type: "problem", qtd: 0},
         { type: "servRequest", qtd:0 }
     ];
-    $.each(_openTicketsData, function(index, el){
+    $.each(_resolvedTicketsData, function(index, el){
         switch (el.type) {
             case "Incident":
                 dataToRender[0].qtd++;

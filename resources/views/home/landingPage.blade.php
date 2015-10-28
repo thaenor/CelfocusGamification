@@ -132,6 +132,7 @@
                                 </thead>
                                 <tbody id='playerLeaderboard'></tbody>
                             </table>
+                            <div id="see-more-placeholder-player"> </div>
                         </div>
                         <!-- player ranking -->
                     </div>
@@ -153,6 +154,7 @@
                                     </thead>
                                     <tbody id='teamLeaderboard'></tbody>
                                 </table>
+                                <div id="see-more-placeholder-team"> </div>
                             </div>
                         </div>
                         <!-- team ranking -->
@@ -166,7 +168,7 @@
                     <div class="col-md-6 col-sm-12 col-xs-12 ">
                         <div class="panel panel-default">
                             <div class="panel-heading ">
-                                <label class="redMe text-center">Tickets per status</label>
+                                <h4 class="redMe text-center">Tickets per status</h4>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
@@ -181,7 +183,8 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
-                                    <label class="redMe text-center">Ticket volume per priority</label>
+                                    <h4 class="redMe text-center">Ticket volume per priority<br/>
+                                        <small>Out of the closed tickets...</small></h4>
                                 </div>
                                 <div class="panel-body">
                                     <div id="morris-priority-quant-chart"></div>
@@ -196,7 +199,8 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
-                                    <label class="redMe text-center">Ticket volume per type</label>
+                                    <h4 class="redMe text-center">Ticket volume per type<br/>
+                                        <small>Out of the closed tickets...</small></h4>
                                 </div>
                                 <div class="panel-body">
                                     <div id="morris-type-quant-chart"></div>

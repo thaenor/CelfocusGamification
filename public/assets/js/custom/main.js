@@ -29,6 +29,8 @@ var calculatorPointSettings = {
     penaltyPercent: 100
 };
 var _automationFlag = true;
+var _virtualRankingPlayer;
+var _virtualRankingTeam;
 
 Array.prototype.clean = function (deleteValue) {
     for (var i = 0; i < this.length; i++) {

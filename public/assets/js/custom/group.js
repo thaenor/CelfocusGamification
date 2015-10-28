@@ -48,7 +48,7 @@ function renderGroupLeaderBoard(data) {
     teamsArray ? (reDisplayGroupLeaderBoard(teamsArray)) : showGroupLeaderBoardError();
 }
 
-function renderMorrisBar_Team(dataArray) {
+/*function renderMorrisBar_Team(dataArray) {
     $("#morris-Teambar-chart").empty();
     Morris.Bar({
         element: 'morris-Teambar-chart',
@@ -60,31 +60,12 @@ function renderMorrisBar_Team(dataArray) {
         resize: true,
         gridTextColor: '#696361'
     });
-}
+}*/
 
 function reDisplayGroupLeaderBoard(array) {
     $('#teamLeaderboard').empty();
-    //$('.hidden-sm').remove();
     var orderedTeams = sortByPoints(array);
-    var graphData = [], flag = true;
-
-/*    $.each(orderedTeams, function (index, el) {
-        if(index === 10){ renderMorrisBar_Team(graphData); flag=false; return false;}
-        if((index%2) == 0) {
-            $('#teamLeaderboard').append('<tr> ' +
-                '<td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
-                '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
-                '<td class="">' + el[1] + '</td> </tr>');
-        }else{
-            $('#teamLeaderboard').append('<tr class="greyME"> ' +
-                '<td class="lead col-md-1 col-lg-1 col-xm-1 ">' + (index + 1) + '</td> ' +
-                '<td class=""> <a data-toggle="modal" data-target="#TeamInfo">' + el[0] + '</a></td>' +
-                '<td class="">' + el[1] + '</td> </tr>');
-        }
-        var obj = {name: el[0], point: el[1]};
-        graphData.push(obj);
-    });
-    if(flag===true){ renderMorrisBar_Team(graphData); }*/
+    _virtualRankingTeam = orderedTeams;
     for(var index=3; index<(orderedTeams.length-1) && index < 13; index++){
         if((index%2) == 0) {
             $('#teamLeaderboard').append('<tr> ' +
@@ -97,11 +78,8 @@ function reDisplayGroupLeaderBoard(array) {
                 '<td class="col-md-3"> <a data-toggle="modal" data-target="#TeamInfo">' + orderedTeams[index][0] + '</a></td>' +
                 '<td class="col-md-2">' + orderedTeams[index][1] + '</td> </tr>');
         }
-        //var obj = {name: orderedTeams[index][0], point: orderedTeams[index][1]};
-        //graphData.push(obj);
     }
-
-    //$('#groupLeaderBoardNav').hide();
+    $("#see-more-placeholder-team").append('<a id="moreTeams">See more...</a>');
 }
 
 function showGroupLeaderBoardError() {
