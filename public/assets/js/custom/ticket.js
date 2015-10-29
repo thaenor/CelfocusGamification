@@ -235,7 +235,7 @@ function drawGraphTicketsType(){
     var dataToRender = [
         { type: "incident", qtd: 0 },
         { type: "problem", qtd: 0},
-        { type: "servRequest", qtd:0 }
+        { type: "SR", qtd:0 }
     ];
     $.each(_resolvedTicketsData, function(index, el){
         switch (el.type) {

@@ -39,33 +39,50 @@
 </div>
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid pull-right">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand dropdown-menu-right" href="#">
-                <img class="pull-right" alt="brand" id="logo" src="assets/logo.png"/>
-            </a>
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+    <div class="container-fluid">
+        <h1 class="col-md-6" style="color: #FFFFFF;">Game of tickets</h1>
+        <a class="navbar-brand pull-right" href="#">
+            <img class="pull-right" alt="brand" id="logo" src="assets/logo.png"/>
+        </a>
+        <!-- Uncomment if you want a top bar settings. Brand and toggle get grouped for better mobile display -->
+        <!-- <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>-->
+            </button>
 
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        Collect the nav links, forms, and other content for toggling
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        </div>
+        </div>-->
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
 
+<div class="col-md-1 well well-sm">
+    <!-- Nav tabs -->
+    <div>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
+                    Ranks</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                       data-toggle="tab" id="tab2" class="redMe">Challenges</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
+                                       data-toggle="tab" id="tab3" class="redMe">Newsfeed</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4" class="redMe">Open
+                    Tickets</a></li>
+        </ul>
+    </div>
+</div>
 
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2 class="redMe">Game of tickets</h2>
+<div class="col-md-11">
+
     <div>
         <div>
             <h4>
@@ -97,19 +114,7 @@
 
     <div class="tabbable">
 
-        <!-- Nav tabs -->
-        <div class="col-md-1 col-xs-6 well well-sm">
-            <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1" class="redMe">Top
-                        Ranks</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                           data-toggle="tab" id="tab2" class="redMe">Challenges</a></li>
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
-                                           data-toggle="tab" id="tab3" class="redMe">Newsfeed</a></li>
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="tab4" class="redMe">Open
-                        Tickets</a></li>
-            </ul>
-        </div>
+
         <!-- Tab panes -->
         <div class="tab-content col-md-11">
             <div role="tabpanel" class="tab-pane active" id="home">
@@ -165,7 +170,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                     <!-- Morris chart -->
-                    <div class="col-md-6 col-sm-12 col-xs-12 ">
+                    <div class="col-md-4 col-sm-12 col-xs-12 ">
                         <div class="panel panel-default">
                             <div class="panel-heading ">
                                 <h4 class="redMe text-center">Tickets per status</h4>
@@ -180,7 +185,7 @@
 
                     <!-- Morris chart -->
                     <section>
-                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                        <div class="col-md-4 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
                                     <h4 class="redMe text-center">Ticket volume per priority<br/>
@@ -196,7 +201,7 @@
 
                     <!-- Morris chart -->
                     <section>
-                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                        <div class="col-md-4 col-sm-12 col-xs-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
                                     <h4 class="redMe text-center">Ticket volume per type<br/>
